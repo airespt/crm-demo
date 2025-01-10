@@ -20,6 +20,16 @@ This template comes with the following features:
 - `corepack enable`
 - `yarn exec env`
 
+### SQL Express
+Prisma Client requires TCP/IP to be enabled. To enable TCP/IP:
+
+- Open SQL Server Configuration Manager. (Open the Start Menu and type
+"SQL Server Configuration Manager".)  
+(For Windows 10/11 type "SQLServerManager14.msc")
+see: https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-configuration-manager?view=sql-server-ver16
+- In the left-hand panel, click SQL Server Network Configuration > Protocols for MSSQLSERVER  
+- Right-click TCP/IP and choose Enable.
+
 
 ### Build and dev scripts
 
@@ -41,3 +51,9 @@ This template comes with the following features:
 - `storybook` – starts storybook dev server
 - `storybook:build` – build production storybook bundle to `storybook-static`
 - `prettier:write` – formats all files with Prettier
+
+### Changes to Prisma schema
+
+- `npx prisma generate` generates the prisma-client 
+- `npx prisma db push` updates db schema (can drop tables)
+- TODO: Safe migrations.
