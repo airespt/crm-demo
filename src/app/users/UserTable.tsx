@@ -2,20 +2,20 @@
 
 import { AgGridReact } from "ag-grid-react"
 import type { ColDef } from "ag-grid-community";
+import { User } from "@/prisma/coreDb/interfaces";
 
-interface UserRowData {
-  name: string,
-  email: string,
-  company: string,
-}
+
+const headers = [
+  { field: 'name', flex: 1, },
+  { field: 'email', flex: 1 , filter: "agTextColumnFilter"},
+  { field: 'role.name', flex: 1  }
+] as ColDef<User>[]
 
 export interface UserTableProps {
-  rowData: UserRowData[]
-  headers: ColDef<UserRowData>[]
+  rowData: User[]
 }
 
-export function UserTable(props: UserTableProps) {
-  const { rowData, headers } = props
+export function UserTable({ rowData }: UserTableProps) {  
   return (
     <AgGridReact
       rowData={rowData}

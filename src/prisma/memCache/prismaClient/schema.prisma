@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "prismaClient"
+}
+
+generator typescriptInterfaces {
+  provider = "prisma-generator-typescript-interfaces"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:memCache.db"
+}
+
+model Session {
+  key      String @id @default(nanoid())
+  userId   Int
+  source   String
+  expireAt BigInt
+}

@@ -1,6 +1,5 @@
 'use client';
 
-import { createTheme } from '@mantine/core';
 import {
   ModuleRegistry,
   ClientSideRowModelModule,
@@ -9,6 +8,7 @@ import {
   DateFilterModule
 } from 'ag-grid-community';
 
+import { createTheme } from '@mantine/core';
 
 export const theme = createTheme({
   /* Put your mantine theme override here */
