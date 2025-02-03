@@ -4,17 +4,24 @@ import { redirect } from 'next/navigation'
 import { SignInFormSchema } from './contract'
 import { cookies } from 'next/headers'
 import { Session } from '@/prisma/memCache/prismaClient'
-import { userService, sessionService } from '@/Services'
+import { userService, sessionService } from '@/Services/user'
 import { User } from '@/prisma/coreDb/interfaces'
 
 const SESSION_KEY="sessionId"
 
-export async function useSession() {
-  console.log("server hook: useSession")
+/**
+ * To be used in pages that require a logged in user.
+ * Redirects to login page if no session is found.
+ * @param redirectTo optional partial path to redirect to after login
+ * @returns 
+ */
+export async function useSession(redirectTo?: string) {
+  console.log("server hook: useClientSession")
   try {
     const sessionKey = (await cookies()).get(SESSION_KEY)?.value
+    //console.log(`sessionKey: ${sessionKey}`)
     if( ! sessionKey ) {
-      return null
+      throw new Error("Session key not found in cookies")
     }
     const userId = await sessionService.verify(sessionKey)
     const user = await userService.getById(userId, true)
@@ -22,17 +29,21 @@ export async function useSession() {
   }
   catch(e) {
     console.log(e)
-    redirect('/login') // later, add redirect param to return to the same page requested before login
+    const param = redirectTo ? `?redirect=${encodeURIComponent(redirectTo)}` : ''
+    //console.log(`redirecting to ${param}`)
+    redirect(`/login${param}`)
   }
 }
 
 export async function signIn(prevState: unknown, formData: FormData) {
   const email = formData.get('email')
   const password = formData.get('password')
+  const redirectTo = formData.get('redirect') as string
   // Validate form fields
   const validatedFields = SignInFormSchema.safeParse({
     email,
     password,
+    redirect,
   })
 
   // set form fields state
@@ -76,13 +87,14 @@ export async function signIn(prevState: unknown, formData: FormData) {
 
   (await cookies()).set({
     name: SESSION_KEY,
-    value: session?.key,
+    value: session.key,
     path: "/",
     sameSite: "strict",
     httpOnly: true,
     // maxAge: 60 * 60 * 24, // 1 day // no maxAge means it's removed on tab close
   })
-  redirect("/users")
+  console.log(`redirecting to ${redirectTo}`)
+  redirect(redirectTo || '/crm')
 }
 
 export async function signOut() {
@@ -93,5 +105,5 @@ export async function signOut() {
     // httpOnly: true,
   })
 
-  redirect("/login")
+  redirect('/login')
 }

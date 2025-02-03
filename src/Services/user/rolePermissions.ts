@@ -1,5 +1,5 @@
-import { rolesRepo } from "@/Repos"
-import { NewRole } from "@/Repos/rolePermissions"
+import { rolesRepo } from "@/Repos/user"
+import { NewRole } from "@/Repos/user/rolePermissions"
 
 export async function listRoles(includeUsers = false) {
   return await rolesRepo.getAll(includeUsers)

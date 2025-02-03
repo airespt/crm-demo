@@ -1,6 +1,6 @@
 'use server'
 
-import { sessionsRepo } from "@/Repos"
+import { sessionsRepo } from "@/Repos/user"
 
 export async function createSession(userId: number) {
   await sessionsRepo.deleteExpired()

@@ -1,6 +1,6 @@
 import { maskUser } from "@/Entities/user";
 import { User } from "@/prisma/coreDb/interfaces";
-import { usersRepo } from "@/Repos";
+import { usersRepo } from "@/Repos/user";
 
 // Only returns User when credentials are valid
 export async function authenticate(email: string, password: string) {
