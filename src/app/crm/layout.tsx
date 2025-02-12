@@ -1,7 +1,5 @@
-import '@mantine/core/styles.css';
-
 import React from 'react';
-import { AppShell,
+import { Anchor, AppShell,
   AppShellHeader,
   AppShellMain,
   AppShellNavbar,
@@ -10,13 +8,11 @@ import { AppShell,
 } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
+import { NavLinkLogout } from '@/components/nav/NavLinkLogout';
 
-export const metadata = {
-  title: 'crm Demo',
-  description: 'crm WIP',
-};
 
 export default function CrmLayout({ children }: { children: React.ReactNode }) {
+  
   return (
     <AppShell
       header={{ height: 60 }}
@@ -34,9 +30,11 @@ export default function CrmLayout({ children }: { children: React.ReactNode }) {
       <AppShellNavbar>
         <NavLink label="Home" href="/crm" component={Link} />
         <NavLink label="Clientes" href="/crm/customers" component={Link} />
-        <NavLink label="Users" href="/crm/users" component={Link}>
-          <NavLink label="Permissions" href="/crm/users/roles" component={Link} />
+        <NavLink label="Users">
+          <NavLink label="Accounts" href="/crm/userAccounts/users" component={Link} />
+          <NavLink label="Permissions" href="/crm/userAccounts/roles" component={Link} />
         </NavLink>
+        <NavLinkLogout />
       </AppShellNavbar>
       <AppShellMain>
         {children}

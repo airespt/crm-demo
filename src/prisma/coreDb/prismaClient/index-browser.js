@@ -118,11 +118,6 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Snapshot: 'Snapshot'
 });
 
-exports.Prisma.AppConfigScalarFieldEnum = {
-  id: 'id',
-  value: 'value'
-};
-
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -138,8 +133,9 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.RolePermissionsScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  accessUsers: 'accessUsers',
-  accessPermissions: 'accessPermissions'
+  userAccounts: 'userAccounts',
+  rolePermissions: 'rolePermissions',
+  customers: 'customers'
 };
 
 exports.Prisma.SortOrder = {
@@ -154,7 +150,6 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  AppConfig: 'AppConfig',
   User: 'User',
   RolePermissions: 'RolePermissions'
 };

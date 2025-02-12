@@ -4,7 +4,7 @@ import { usersRepo } from "@/Repos/user";
 
 // Only returns User when credentials are valid
 export async function authenticate(email: string, password: string) {
-  const user = await usersRepo.getBy({ email })
+  const user = await usersRepo.getBy({ email }, true)
   // if( encrypt(password) !== user.password )
   //  throw Error('Wrong email/password')
   return maskUser(user)

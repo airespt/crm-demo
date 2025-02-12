@@ -6,6 +6,6 @@ export function hasPermission(userPermissions = 0, permission: UserPermissions) 
 export enum UserPermissions {
   View = 1,
   Create = 2,
-  Update = 4,
+  Modify = 4,
   Delete = 8,
 }

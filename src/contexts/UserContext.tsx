@@ -1,34 +1,42 @@
+'use client'
+import { signOut } from "@/actions/auth/auth";
 import { User } from "@/prisma/coreDb/interfaces";
-import { createContext, useContext, useMemo, useState } from "react";
+import { useLocalStorage } from "@mantine/hooks";
+import { createContext, useCallback, useContext, useMemo } from "react";
 
 type UserContext = {
-  loggedUser: User | null;
-  login: (user: User) => void
+  loggedUser: User | undefined;
+  login: (user: User) => void;
   logout: () => void
 }
 
-const UserCtx = createContext<UserContext | null>(null)
+const Context = createContext<UserContext | null>(null)
 
-export default function UserContextProvider({ children } : { children: React.ReactNode }) {
-  const [loggedUser, setLoggedUser] = useState<User | null>(null)
-
-  const userCtxValue = useMemo<UserContext>(() => ({
-    loggedUser,
-    login: (user: User) => setLoggedUser(user),
-    logout: () => setLoggedUser(null),
-  }), [loggedUser])
+export function UserContextProvider({ children } : { children: React.ReactNode }) {
+  const [user, setUser] = useLocalStorage<User | undefined>({ key: 'user' } )
+  
+  const handleLogout = useCallback(() => {
+    signOut()
+    setUser(undefined)
+  }, [])
+  
+  const initialValue = useMemo<UserContext>(() => ({
+    loggedUser: user,
+    login: (user: User) => setUser(user),
+    logout: handleLogout,
+  }), [user])
 
   return (
-    <UserCtx.Provider value={userCtxValue}>
+    <Context.Provider value={initialValue}>
       {children}
-    </UserCtx.Provider>
+    </Context.Provider>
   )
 }
 
 export function useUserContext() {
-  const context = useContext(UserCtx)
-  if( ! context ) {
-    throw(new Error("useUserContext must be used within a UserContextProvider"))
+  const ctx = useContext(Context)
+  if( ! ctx ) {
+    throw(new Error("useUserContext must be used within a ContextProvider"))
   }
-  return context
+  return ctx
 }

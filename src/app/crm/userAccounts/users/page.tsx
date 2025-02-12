@@ -1,4 +1,4 @@
-import { UserTableData } from './UserTableData';
+import { UserTableData } from '../UserTableData';
 import { Container } from '@mantine/core';
 
 import { useSession } from '@/actions/auth/auth';
@@ -7,17 +7,17 @@ import { AccessGate } from '@/components/AccessGate';
 
 export default async function Page() {
   const sessionUser = await useSession('/users');
-  // handle new user
+  // handle new
   
 
-  // handle edit user
+  // handle edit
 
-  // handle delete user
+  // handle delete
 
 
   return (
     <AccessGate
-      userAccess={sessionUser.role?.accessUsers}
+      userAccess={sessionUser.role?.userAccounts}
       requiredPermissions={UserPermissions.View}
     >
       Users page

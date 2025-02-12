@@ -19,11 +19,12 @@
     "stylelint": "stylelint '**/*.css' --cache",
     "jest": "jest",
     "jest:watch": "jest --watch",
-    "prettier:check": "prettier --check \"**/*.{ts,tsx}\"",
-    "prettier:write": "prettier --write \"**/*.{ts,tsx}\"",
+    "prettier-check": "prettier --check \"**/*.{ts,tsx}\"",
+    "prettier-write": "prettier --write \"**/*.{ts,tsx}\"",
     "test": "npm run prettier:check && npm run lint && npm run typecheck && npm run jest",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build"
+    "storybook-build": "storybook build",
+    "migrate-core": "prisma migrate dev --schema=./src/prisma/coreDb/schema.prisma"
   },
   "dependencies": {
     "@mantine/core": "7.15.3",
@@ -69,8 +70,12 @@
     "stylelint": "16.6.1",
     "stylelint-config-standard-scss": "13.1.0",
     "ts-jest": "29.1.5",
+    "ts-node": "10.9.2",
     "typescript": "5.5.2",
     "typescript-eslint": "8.14.0"
   },
-  "packageManager": "yarn@4.6.0"
+  "packageManager": "yarn@4.6.0",
+  "prisma": {
+    "seed": "ts-node src/prisma/seed.ts"
+  }
 }

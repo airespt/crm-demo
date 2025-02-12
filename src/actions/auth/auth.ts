@@ -16,7 +16,7 @@ const SESSION_KEY="sessionId"
  * @returns 
  */
 export async function useSession(redirectTo?: string) {
-  console.log("server hook: useClientSession")
+  console.log("server hook: useSession")
   try {
     const sessionKey = (await cookies()).get(SESSION_KEY)?.value
     //console.log(`sessionKey: ${sessionKey}`)
@@ -38,12 +38,11 @@ export async function useSession(redirectTo?: string) {
 export async function signIn(prevState: unknown, formData: FormData) {
   const email = formData.get('email')
   const password = formData.get('password')
-  const redirectTo = formData.get('redirect') as string
+  //const redirectTo = formData.get('redirect') as string
   // Validate form fields
   const validatedFields = SignInFormSchema.safeParse({
     email,
     password,
-    redirect,
   })
 
   // set form fields state
@@ -51,7 +50,8 @@ export async function signIn(prevState: unknown, formData: FormData) {
     email,
     password,
     errors: validatedFields.error?.flatten().fieldErrors,
-    message: ""
+    message: "",
+    user: null as User | null,
   }
   // If any form fields are invalid, return field errors
   if (!validatedFields.success) {
@@ -76,7 +76,7 @@ export async function signIn(prevState: unknown, formData: FormData) {
   //   console.log(`${key}: ${heads.get(key)}`)
   // }
   let session: Session
-  try{
+  try {
     session = await sessionService.create(user.id)
   }
   catch(e) {
@@ -91,18 +91,20 @@ export async function signIn(prevState: unknown, formData: FormData) {
     path: "/",
     sameSite: "strict",
     httpOnly: true,
-    // maxAge: 60 * 60 * 24, // 1 day // no maxAge means it's removed on tab close
+    // maxAge: 60 * 60 * 24, // 1 day // without maxAge it becomes session only
   })
-  console.log(`redirecting to ${redirectTo}`)
-  redirect(redirectTo || '/crm')
+//  console.log(`redirecting to ${redirectTo}`)
+//  redirect(redirectTo || '/crm')
+  respStatus.user = user
+  return respStatus
 }
 
 export async function signOut() {
   (await cookies()).delete({
     name: SESSION_KEY,
-    // path: "/",
-    // sameSite: "strict",
-    // httpOnly: true,
+    path: "/",
+    sameSite: "strict",
+    httpOnly: true,
   })
 
   redirect('/login')

@@ -54,6 +54,5 @@ see: https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-confi
 
 ### Changes to Prisma schema
 
-- `npx prisma generate` generates the prisma-client 
-- `npx prisma db push` updates db schema (can drop tables)
+- `yarn prisma-[db]-(client|push|pull) check package.json
 - TODO: Safe migrations.

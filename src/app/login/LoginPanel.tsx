@@ -1,28 +1,37 @@
 'use client'
 
 import { signIn } from "@/actions/auth/auth";
+import { useUserContext } from "@/contexts/UserContext";
 import {
   Anchor,
   Button,
-  Checkbox,
   Group,
   Paper,
   PasswordInput,
   TextInput
 } from "@mantine/core";
-import { useSearchParams } from "next/navigation";
-import { useActionState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useActionState, useEffect } from "react";
 
 export function LoginPanel() {
   const [state, action, pending] = useActionState(signIn, undefined)
   
+  const router = useRouter()
   const params = useSearchParams();
-  const redirectTo = params?.get('redirect') || "/"
+  const redirectTo = params?.get('redirect') || "/crm"
+
+  const userContext = useUserContext()
+  useEffect(() => {
+    if( state?.user ) {
+      userContext.login(state.user)
+      router.replace(redirectTo)
+    }
+  }, [state?.user])
 
   return (
     <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+      {JSON.stringify(state?.user)}
       <form action={action}>
-        <input type="hidden" name="redirect" value={redirectTo} />
         <TextInput
           name="email"
           label="Email"

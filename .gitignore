@@ -117,7 +117,7 @@ dist
 .dynamodb/
 
 # SQLite cache DBs
-*.db
+**/*.db
 
 # TernJS port file
 .tern-port

@@ -1,13 +1,17 @@
 import { useSession } from '@/actions/auth/auth';
 import { ColorSchemeToggle } from '@/components/ColorSchemeToggle/ColorSchemeToggle';
 import { Title } from '@mantine/core';
-import { usePathname } from 'next/navigation';
+import { CrmContent } from './crmContent';
+//import { ValidateLoggedUser } from '@/components/nav/ValidateLoggedUser';
 
 export default async function CrmPage() {
-  await useSession('/crm');
+  const user = await useSession('/crm');
+  console.log(JSON.stringify(user));
   return (
     <>
+      {/* <ValidateLoggedUser /> */}
       <Title>Welcome CRM</Title>
+      <CrmContent />
       <ColorSchemeToggle />
     </>
   );

@@ -12,29 +12,25 @@ datasource db {
   url      = env("CORE_DB")
 }
 
-model AppConfig {
-  id            String      @id
-  value         String      @db.NVarChar(4000)
-}
-
 model User {
-  id            Int         @id @default(autoincrement())
-  name          String
-  email         String      @unique
-  password      String      @default("")
-  createdAt     DateTime    @default(now())
-  createdBy     String?
-  updatedAt     DateTime?   @default(now())
-  updatedBy     String?
-  roleId        Int
-  role          RolePermissions   @relation(fields: [roleId], references: [id])
+  id                Int         @id @default(autoincrement())
+  name              String
+  email             String      @unique
+  password          String      @default("")
+  createdAt         DateTime    @default(now())
+  createdBy         Int
+  updatedAt         DateTime?   @default(now())
+  updatedBy         Int
+  roleId            Int
+  role              RolePermissions   @relation(fields: [roleId], references: [id])
   @@map(name: "Users")
 }
 
 model RolePermissions {
-  id                  Int         @id @default(autoincrement())
-  name                String      @unique
-  accessUsers         Int         @default(0)
-  accessPermissions   Int         @default(0)
-  users               User[]
+  id                    Int         @id @default(autoincrement())
+  name                  String      @unique
+  userAccounts          Int         @default(0)
+  rolePermissions       Int         @default(0)
+  customers             Int         @default(0)
+  users                 User[]
 }

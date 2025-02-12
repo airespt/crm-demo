@@ -14,6 +14,11 @@ export function maskUser(user: User): User {
   return maskedUser;
 }
 
+export function maskUserMutate(user: User): User {
+  user.password = ""
+  return user;
+}
+
 
 // export function maskUser(user: User, mask: (keyof User)|(keyof User)[]): SafeUser {
 //   const safeUser = { ...user }

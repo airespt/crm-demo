@@ -1,11 +1,15 @@
 import '@mantine/core/styles.css';
 
-import React from 'react';
+import React, { StrictMode } from 'react';
 import { ColorSchemeScript,
   mantineHtmlProps,
   MantineProvider,
 } from '@mantine/core';
 import { theme } from '../theme';
+import { UserContextProvider } from '@/contexts/UserContext';
+
+import '@mantine/core/styles.css';
+import './globals.css';
 
 export const metadata = {
   title: 'crm Demo',
@@ -24,9 +28,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <MantineProvider theme={theme}>
-          {children}
-        </MantineProvider>
+        <StrictMode>
+          <MantineProvider theme={theme}>
+            <UserContextProvider>
+              {children}
+            </UserContextProvider>
+          </MantineProvider>
+        </StrictMode>
       </body>
     </html>
   );

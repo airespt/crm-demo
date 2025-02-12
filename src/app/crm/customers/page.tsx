@@ -6,7 +6,7 @@ import { UserPermissions } from '@/actions/auth/userPermissions';
 import { AccessGate } from '@/components/AccessGate';
 
 export default async function Page() {
-  const sessionUser = await useSession('/users');
+  const sessionUser = await useSession('/crm/customers');
   
   const allCustomers = await customerService.list();
 
@@ -14,7 +14,7 @@ export default async function Page() {
     <>
       Customers page ({allCustomers.length})
       <AccessGate
-        userAccess={sessionUser.role?.accessUsers}
+        userAccess={sessionUser.role?.customers}
         requiredPermissions={32}
       >
         {allCustomers.map(x => (

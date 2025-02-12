@@ -1,5 +1,6 @@
-import { Prisma, RolePermissions } from '@/prisma/coreDb/prismaClient';
 import { coreDb } from '@/prisma/coreDb/client';
+import { Prisma, RolePermissions as ModelRolePermissions } from '@/prisma/coreDb/prismaClient';
+import { RolePermissions } from '@/prisma/coreDb/interfaces';
 
 export async function getAllRoles(includeUsers = false): Promise<RolePermissions[]> {
   try {
@@ -28,9 +29,9 @@ export async function getRoleBy(where: Prisma.RolePermissionsWhereUniqueInput, i
   }
 }
 
-export type NewRole = Omit<RolePermissions, "id">
+export type NewRole = Omit<ModelRolePermissions, "id">
 
-export async function createRole(newRole: NewRole): Promise<RolePermissions | null> {
+export async function createRole(newRole: NewRole): Promise<ModelRolePermissions | null> {
   try {
     const result = await coreDb.rolePermissions.create({ data: newRole })
     return result;
