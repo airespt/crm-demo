@@ -13,6 +13,7 @@ const headers = [
     field: 'view', 
     headerName: 'View',
     width: switchColumnWidth,
+    sortable: false,
     cellRenderer: (params: any) => (
       <Switch 
         size="sm"
@@ -25,6 +26,7 @@ const headers = [
     field: 'create',
     headerName: 'Create',
     width: switchColumnWidth,
+    sortable: false,
     cellRenderer: (params: any) => (
       <Switch 
         size="sm"
@@ -37,6 +39,7 @@ const headers = [
     field: 'modify',
     headerName: 'Modify', 
     width: switchColumnWidth,
+    sortable: false,
     cellRenderer: (params: any) => (
 
       <Switch 
@@ -50,6 +53,7 @@ const headers = [
     field: 'delete',
     headerName: 'Delete',
     width: switchColumnWidth,
+    sortable: false,
     cellRenderer: (params: any) => (
       <Switch 
         size="sm"

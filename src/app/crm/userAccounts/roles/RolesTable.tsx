@@ -1,29 +1,43 @@
 'use client'
 
-import { ActionIcon, Group, Modal } from '@mantine/core';
+import { ActionIcon, Group, Modal, Paper } from '@mantine/core';
 import { AgGridReact } from "ag-grid-react"
+import { themeQuartz } from 'ag-grid-community';
 import type { GridOptions } from "ag-grid-community";
 import { useDisclosure } from '@mantine/hooks';
 import { useRolesEditor } from './context'
 import { RolePermissions } from '@/prisma/coreDb/interfaces';
 import { IconDeviceFloppy, IconPlus } from '@tabler/icons-react';
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { ViewRole } from './types';
+import styles from './styles.module.css';
 
 const gridOptions: GridOptions<ViewRole> = {
   columnDefs: [
-    { field: 'name', flex: 2, },
+    { 
+      field: 'name', 
+      headerName: 'Role Name',
+      sortable: true,
+      flex: 2,
+    },
     { 
       field: 'users',
+      headerName: 'Users',
       valueGetter: (params) => params.data?.users?.length || 0,
+      sortable: true,
       flex: 1,
     },
   ],
-  rowClassRules: {
-    'has-changes': (params) => params.data?.hasChanges || false
+  getRowStyle: (params) => {
+    return {
+      backgroundColor: params.data?.hasChanges ? 'var(--mantine-color-yellow-2)' : 'transparent'
+    }
   },
+  rowSelection: { mode: "singleRow", checkboxes: false, enableClickSelection: true },
+  getRowId: (params) => params.data?.id + '',
   suppressCellFocus: true,
-  domLayout: 'autoHeight'
+  domLayout: 'autoHeight',
+  headerHeight: 48,
 }
 
 export type RoleTableProps = {
@@ -42,28 +56,48 @@ export function RolesTable({ rolesData }: RoleTableProps) {
     return Array.from(viewRoles.values()).some(role => role.hasChanges)
   }, [viewRoles])
 
+  const viewRolesValues = useMemo(() => Array.from(viewRoles.values()), [viewRoles])
+
+  const handleOnCellClicked = useCallback((event: any) => {
+    console.log('Column:', event.column.getColId())
+    setSelectedRoleId(event.data?.id)
+  }, [setSelectedRoleId])
+
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <Paper withBorder p="md" radius="md">
       <Modal opened={opened} onClose={close} title="New Role" centered>
         {/* Modal content */}
       </Modal>
-      <Group p={3} justify='space-between'>
-        <ActionIcon aria-label="add new user">
-          <IconPlus onClick={toggle}/>
+      <Group pb="md" justify='space-between'>
+        <ActionIcon 
+          variant="light" 
+          size="lg" 
+          color="blue" 
+          aria-label="add new user"
+          onClick={toggle}
+        >
+          <IconPlus />
         </ActionIcon>
-        <ActionIcon aria-label="trash user" disabled={!hasTableChanges}>
+        <ActionIcon 
+          variant="light" 
+          size="lg" 
+          color="blue" 
+          aria-label="save changes" 
+          disabled={!hasTableChanges}
+        >
           <IconDeviceFloppy />
         </ActionIcon>
       </Group>
-      <AgGridReact
-        className="ag-theme-alpine"
-        gridOptions={gridOptions}
-        rowData={Array.from(viewRoles.values())}
-        onCellClicked={(event) => {
-          console.log('Column:', event.column.getColId())
-          setSelectedRoleId(event.data?.id)
-        }}
-      />
-    </div>
+      <div style={{ width: '100%' }}>
+        <AgGridReact
+          theme={themeQuartz} 
+          debug={true}
+          className={styles.rolesTable}
+          gridOptions={gridOptions}
+          rowData={viewRolesValues}
+          onCellClicked={handleOnCellClicked}
+        />
+      </div>
+    </Paper>
   )
 }

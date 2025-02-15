@@ -3,20 +3,16 @@
 import {
   ModuleRegistry,
   ClientSideRowModelModule,
-  TextFilterModule,
-  NumberFilterModule,
-  DateFilterModule
+  AllCommunityModule,
 } from 'ag-grid-community';
+
+ModuleRegistry.registerModules([
+  AllCommunityModule,
+  ClientSideRowModelModule,
+])
 
 import { createTheme } from '@mantine/core';
 
 export const theme = createTheme({
   /* Put your mantine theme override here */
 });
-
-ModuleRegistry.registerModules([
-  TextFilterModule,
-  NumberFilterModule,
-  DateFilterModule,
-  ClientSideRowModelModule,
-]);
