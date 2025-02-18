@@ -1,4 +1,5 @@
 import { maskUserMutate } from "@/Entities/user"
+import { RolePermissions, User } from "@/prisma/coreDb/interfaces"
 import { rolesRepo } from "@/Repos/user"
 import { NewRole } from "@/Repos/user/rolePermissions"
 
@@ -16,7 +17,24 @@ export async function getRoleById(id: number, includeUsers = false) {
   return result
 }
 
-export async function createRole(newRole: NewRole) {
+export async function createRole(newRole: NewRole, user?: User) {
   const result = await rolesRepo.create(newRole)
   return result
 }
+
+export async function updateRoles(roles: RolePermissions[], user?: User) {
+  const result = await Promise.all(roles.map(async ({id, users, ...role}) => {
+    const result = await rolesRepo.update(id, role)
+    result?.users?.forEach( user => maskUserMutate(user) )
+    return result
+  }))
+  return result
+}
+
+export async function deleteRole(id: number, user?: User) {
+  const result = await rolesRepo.delete(id)
+  return result
+}
+
+
+

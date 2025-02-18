@@ -19,12 +19,18 @@ export const userService = {
 //  USER ROLES PERMISSIONS
 import {
   listRoles,
-  getRoleById
+  getRoleById,
+  createRole,
+  updateRoles,
+  deleteRole,
 } from "./rolePermissions";
 
 export const roleService = {
   list: listRoles,
   getById: getRoleById,
+  create: createRole,
+  update: updateRoles,
+  delete: deleteRole,
 }
 
 

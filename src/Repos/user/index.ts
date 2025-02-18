@@ -17,12 +17,16 @@ import {
   getAllRoles,
   getRoleBy,
   createRole,
+  updateRole,
+  deleteRole,
 } from "./rolePermissions";
 
 export const rolesRepo = {
   getAll: getAllRoles,
   getBy: getRoleBy,
   create: createRole,
+  update: updateRole,
+  delete: deleteRole,
 }
 
 import {

@@ -1,5 +1,5 @@
 'use client'
-import { signOut } from "@/actions/auth/auth";
+import { signOut } from "@/app/login/actions";
 import { User } from "@/prisma/coreDb/interfaces";
 import { useLocalStorage } from "@mantine/hooks";
 import { createContext, useCallback, useContext, useMemo } from "react";

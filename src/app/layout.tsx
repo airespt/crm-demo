@@ -1,12 +1,16 @@
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 
 import React, { StrictMode } from 'react';
 import { ColorSchemeScript,
   mantineHtmlProps,
   MantineProvider,
 } from '@mantine/core';
-import { theme } from '../theme';
+import { Notifications } from '@mantine/notifications';
+
 import { UserContextProvider } from '@/contexts/UserContext';
+
+import { theme } from '../theme';
 
 import '@mantine/core/styles.css';
 import './globals.css';
@@ -30,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <StrictMode>
           <MantineProvider theme={theme}>
+            <Notifications />
             <UserContextProvider>
               {children}
             </UserContextProvider>

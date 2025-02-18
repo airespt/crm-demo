@@ -1516,6 +1516,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.7":
+  version: 7.26.9
+  resolution: "@babel/runtime@npm:7.26.9"
+  dependencies:
+    regenerator-runtime: "npm:^0.14.0"
+  checksum: 10c0/e8517131110a6ec3a7360881438b85060e49824e007f4a64b5dfa9192cf2bb5c01e84bfc109f02d822c7edb0db926928dd6b991e3ee460b483fb0fac43152d9b
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.24.7, @babel/template@npm:^7.25.9, @babel/template@npm:^7.3.3":
   version: 7.25.9
   resolution: "@babel/template@npm:7.25.9"
@@ -2540,9 +2549,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mantine/core@npm:7.15.3":
-  version: 7.15.3
-  resolution: "@mantine/core@npm:7.15.3"
+"@mantine/core@npm:^7.17.0":
+  version: 7.17.0
+  resolution: "@mantine/core@npm:7.17.0"
   dependencies:
     "@floating-ui/react": "npm:^0.26.28"
     clsx: "npm:^2.1.1"
@@ -2551,19 +2560,55 @@ __metadata:
     react-textarea-autosize: "npm:8.5.6"
     type-fest: "npm:^4.27.0"
   peerDependencies:
-    "@mantine/hooks": 7.15.3
+    "@mantine/hooks": 7.17.0
     react: ^18.x || ^19.x
     react-dom: ^18.x || ^19.x
-  checksum: 10c0/4a59c59bf3900e0ecd6a0ab1833ae1d0f5708de28a47deb7d85edfafeadf2660fb8e2d9d9e10d3036bcde90a447c782220f7ec164492653b0305994e3c5825b3
+  checksum: 10c0/de2e7c8782633a89f7ad45d2a85ab599856caa3a4c6526412dd43c6240d0fd5ccf5d79f2761db1f9538e71f69fad8fb57e3f0578c352841d05a86f385205ce2d
   languageName: node
   linkType: hard
 
-"@mantine/hooks@npm:7.15.3":
-  version: 7.15.3
-  resolution: "@mantine/hooks@npm:7.15.3"
+"@mantine/form@npm:7.17.0":
+  version: 7.17.0
+  resolution: "@mantine/form@npm:7.17.0"
+  dependencies:
+    fast-deep-equal: "npm:^3.1.3"
+    klona: "npm:^2.0.6"
   peerDependencies:
     react: ^18.x || ^19.x
-  checksum: 10c0/72fead5b1e85366f8dc5438a9a8602d46f72cf41f61abbd005e3585fdf4b835c5531bd6a287691422b67bf870147d394e6771aa202a7b630086160a23fa01b44
+  checksum: 10c0/89a3d63f8d782870ed259e3ae7863ddd5bfae1007d73aacbdc7e2de8f1d314510c865628c8b0e4e5dd23efc19afae27bff63007cb47211dca37c24f882c4ba08
+  languageName: node
+  linkType: hard
+
+"@mantine/hooks@npm:^7.17.0":
+  version: 7.17.0
+  resolution: "@mantine/hooks@npm:7.17.0"
+  peerDependencies:
+    react: ^18.x || ^19.x
+  checksum: 10c0/f8cfdd3a9add54599485fc967e802ef1299e83868635f6e5fe0456564a02a39cc97371fd74da0db14d9a290ca61f113aabdfdbe1a045d9ff48b7abd47ef2eb93
+  languageName: node
+  linkType: hard
+
+"@mantine/notifications@npm:7.17.0":
+  version: 7.17.0
+  resolution: "@mantine/notifications@npm:7.17.0"
+  dependencies:
+    "@mantine/store": "npm:7.17.0"
+    react-transition-group: "npm:4.4.5"
+  peerDependencies:
+    "@mantine/core": 7.17.0
+    "@mantine/hooks": 7.17.0
+    react: ^18.x || ^19.x
+    react-dom: ^18.x || ^19.x
+  checksum: 10c0/235468a66af8783396d6ca1f54df2f6baf5a34d5e825bb32763ec20578437f2a75ed85a241fee642d727ac8dfbf8dde38e25d4ddb1655cb199c142cd11ea0a08
+  languageName: node
+  linkType: hard
+
+"@mantine/store@npm:7.17.0":
+  version: 7.17.0
+  resolution: "@mantine/store@npm:7.17.0"
+  peerDependencies:
+    react: ^18.x || ^19.x
+  checksum: 10c0/f1fb919555a87d85cc0e0cc2569a26f4fcb58793d451b4b21bf553cc51a24b200a1478526e5093923214682636010fdfcafe8fced8df12953a2388a4a164a00a
   languageName: node
   linkType: hard
 
@@ -6704,6 +6749,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dom-helpers@npm:^5.0.1":
+  version: 5.2.1
+  resolution: "dom-helpers@npm:5.2.1"
+  dependencies:
+    "@babel/runtime": "npm:^7.8.7"
+    csstype: "npm:^3.0.2"
+  checksum: 10c0/f735074d66dd759b36b158fa26e9d00c9388ee0e8c9b16af941c38f014a37fc80782de83afefd621681b19ac0501034b4f1c4a3bff5caa1b8667f0212b5e124c
+  languageName: node
+  linkType: hard
+
 "dom-serializer@npm:^1.0.1":
   version: 1.4.1
   resolution: "dom-serializer@npm:1.4.1"
@@ -10035,7 +10090,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"klona@npm:^2.0.4":
+"klona@npm:^2.0.4, klona@npm:^2.0.6":
   version: 2.0.6
   resolution: "klona@npm:2.0.6"
   checksum: 10c0/94eed2c6c2ce99f409df9186a96340558897b3e62a85afdc1ee39103954d2ebe1c1c4e9fe2b0952771771fa96d70055ede8b27962a7021406374fdb695fd4d01
@@ -10347,8 +10402,10 @@ __metadata:
     "@babel/core": "npm:7.24.7"
     "@eslint/js": "npm:9.15.0"
     "@ianvs/prettier-plugin-sort-imports": "npm:4.3.1"
-    "@mantine/core": "npm:7.15.3"
-    "@mantine/hooks": "npm:7.15.3"
+    "@mantine/core": "npm:^7.17.0"
+    "@mantine/form": "npm:7.17.0"
+    "@mantine/hooks": "npm:^7.17.0"
+    "@mantine/notifications": "npm:7.17.0"
     "@next/bundle-analyzer": "npm:14.2.4"
     "@prisma/client": "npm:6.2.1"
     "@storybook/nextjs": "npm:8.1.10"
@@ -10384,7 +10441,7 @@ __metadata:
     stylelint: "npm:16.6.1"
     stylelint-config-standard-scss: "npm:13.1.0"
     ts-jest: "npm:29.1.5"
-    ts-node: "npm:^10.9.2"
+    ts-node: "npm:10.9.2"
     typescript: "npm:5.5.2"
     typescript-eslint: "npm:8.14.0"
     zod: "npm:3.24.1"
@@ -12022,7 +12079,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -12379,6 +12436,21 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
   checksum: 10c0/652d290d316c55a253507ecf65ca27f2162801dace10c715f2241203e81d82e9de6d282095b758b26c6bc9e1af9ca552cab5c3a361b230e5fcf25bec31e1bd25
+  languageName: node
+  linkType: hard
+
+"react-transition-group@npm:4.4.5":
+  version: 4.4.5
+  resolution: "react-transition-group@npm:4.4.5"
+  dependencies:
+    "@babel/runtime": "npm:^7.5.5"
+    dom-helpers: "npm:^5.0.1"
+    loose-envify: "npm:^1.4.0"
+    prop-types: "npm:^15.6.2"
+  peerDependencies:
+    react: ">=16.6.0"
+    react-dom: ">=16.6.0"
+  checksum: 10c0/2ba754ba748faefa15f87c96dfa700d5525054a0141de8c75763aae6734af0740e77e11261a1e8f4ffc08fd9ab78510122e05c21c2d79066c38bb6861a886c82
   languageName: node
   linkType: hard
 
@@ -14216,7 +14288,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-node@npm:^10.9.2":
+"ts-node@npm:10.9.2":
   version: 10.9.2
   resolution: "ts-node@npm:10.9.2"
   dependencies:

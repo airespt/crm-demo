@@ -135,7 +135,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Code\\crm-demo\\src\\prisma\\coredb\\prismaClient",
+      "value": "C:\\Code\\crm-demo\\src\\prisma\\coreDb\\prismaClient",
       "fromEnvVar": null
     },
     "config": {
@@ -149,7 +149,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Code\\crm-demo\\src\\prisma\\coredb\\schema.prisma",
+    "sourceFilePath": "C:\\Code\\crm-demo\\src\\prisma\\coreDb\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -163,6 +163,7 @@ const config = {
     "db"
   ],
   "activeProvider": "sqlserver",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

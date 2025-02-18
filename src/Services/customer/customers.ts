@@ -1,4 +1,4 @@
-import { useSession } from "@/actions/auth/auth"
+import { useSession } from "@/app/login/actions"
 import { customerRepo } from "@/Repos/customer"
 
 export async function listCustomers() {

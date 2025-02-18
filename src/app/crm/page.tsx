@@ -1,4 +1,4 @@
-import { useSession } from '@/actions/auth/auth';
+import { useSession } from '@/app/login/actions';
 import { ColorSchemeToggle } from '@/components/ColorSchemeToggle/ColorSchemeToggle';
 import { Title } from '@mantine/core';
 import { CrmContent } from './crmContent';

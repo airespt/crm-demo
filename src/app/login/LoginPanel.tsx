@@ -1,6 +1,6 @@
 'use client'
 
-import { signIn } from "@/actions/auth/auth";
+import { signIn } from "@/app/login/actions";
 import { useUserContext } from "@/contexts/UserContext";
 import {
   Anchor,

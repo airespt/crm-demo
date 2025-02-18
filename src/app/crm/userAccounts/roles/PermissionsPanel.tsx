@@ -3,7 +3,7 @@
 import { Box, Paper, Title } from '@mantine/core'
 import { useRolesEditor } from './context'
 import { PermissionsTable } from './PermissionsTable'
-import { UserPermissions } from '@/actions/auth/userPermissions'
+import { UserPermissions } from '@/app/login/userPermissions'
 import { useMemo } from 'react'
 import { PermissionRow } from './types'
 import { RolePermissions } from '@/prisma/coreDb/interfaces'

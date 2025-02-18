@@ -136,7 +136,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Code\\crm-demo\\src\\prisma\\coredb\\prismaClient",
+      "value": "C:\\Code\\crm-demo\\src\\prisma\\coreDb\\prismaClient",
       "fromEnvVar": null
     },
     "config": {
@@ -150,7 +150,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Code\\crm-demo\\src\\prisma\\coredb\\schema.prisma",
+    "sourceFilePath": "C:\\Code\\crm-demo\\src\\prisma\\coreDb\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -164,6 +164,7 @@ const config = {
     "db"
   ],
   "activeProvider": "sqlserver",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -182,8 +183,8 @@ const fs = require('fs')
 config.dirname = __dirname
 if (!fs.existsSync(path.join(__dirname, 'schema.prisma'))) {
   const alternativePaths = [
-    "src/prisma/coredb/prismaClient",
-    "prisma/coredb/prismaClient",
+    "src/prisma/coreDb/prismaClient",
+    "prisma/coreDb/prismaClient",
   ]
   
   const alternativePath = alternativePaths.find((altPath) => {
@@ -212,7 +213,7 @@ Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
-path.join(process.cwd(), "src/prisma/coredb/prismaClient/query_engine-windows.dll.node")
+path.join(process.cwd(), "src/prisma/coreDb/prismaClient/query_engine-windows.dll.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
-path.join(process.cwd(), "src/prisma/coredb/prismaClient/schema.prisma")
+path.join(process.cwd(), "src/prisma/coreDb/prismaClient/schema.prisma")

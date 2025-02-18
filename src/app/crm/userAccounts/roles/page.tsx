@@ -1,7 +1,7 @@
 import { Paper, Grid, GridCol, Title, Stack, Box } from '@mantine/core';
 
-import { useSession } from '@/actions/auth/auth';
-import { UserPermissions } from '@/actions/auth/userPermissions';
+import { useSession } from '@/app/login/actions';
+import { UserPermissions } from '@/app/login/userPermissions';
 import { AccessGate } from '@/components/AccessGate';
 import { RolesPanel } from './RolesPanel';
 import { useDisclosure } from '@mantine/hooks';

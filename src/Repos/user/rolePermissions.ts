@@ -11,8 +11,8 @@ export async function getAllRoles(includeUsers = false): Promise<RolePermissions
   }
   catch(e) {
     console.log(JSON.stringify(e))
+    throw e
   }
-  return []
 }
 
 export async function getRoleBy(where: Prisma.RolePermissionsWhereUniqueInput, includeUsers = false) {
@@ -38,6 +38,32 @@ export async function createRole(newRole: NewRole): Promise<ModelRolePermissions
   }
   catch(e) {
     console.log(JSON.stringify(e))
+    throw e
   }
-  return null
+}
+
+export async function updateRole(id: number, role: Prisma.RolePermissionsUpdateInput): Promise<RolePermissions | null> {
+  try {
+    const result = await coreDb.rolePermissions.update({
+      where: { id },
+      data: role,
+      include: { users: true }
+    })
+    return result
+  }
+  catch(e) {
+    console.log(JSON.stringify(e))
+    throw e
+  }
+}
+
+export async function deleteRole(id: number) {
+  try {
+    const result = await coreDb.rolePermissions.delete({ where: { id } })
+    return result
+  }
+  catch(e) {
+    console.log(JSON.stringify(e))
+    throw e
+  }
 }

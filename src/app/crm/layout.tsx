@@ -1,5 +1,5 @@
 import React from 'react';
-import { Anchor, AppShell,
+import { AppShell,
   AppShellHeader,
   AppShellMain,
   AppShellNavbar,
@@ -24,7 +24,7 @@ export default function CrmLayout({ children }: { children: React.ReactNode }) {
       <AppShellHeader>
         <Group p={10}>
           <Image src={'/favicon.png'} alt='logo' width={40} height={40}/>
-          
+          idiomas
         </Group>
       </AppShellHeader>
       <AppShellNavbar>

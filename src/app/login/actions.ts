@@ -38,7 +38,7 @@ export async function useSession(redirectTo?: string) {
 export async function signIn(prevState: unknown, formData: FormData) {
   const email = formData.get('email')
   const password = formData.get('password')
-  //const redirectTo = formData.get('redirect') as string
+
   // Validate form fields
   const validatedFields = SignInFormSchema.safeParse({
     email,
@@ -71,10 +71,6 @@ export async function signIn(prevState: unknown, formData: FormData) {
     return respStatus
   }
 
-  // const heads = await headers()
-  // for(const key of heads.keys()) {
-  //   console.log(`${key}: ${heads.get(key)}`)
-  // }
   let session: Session
   try {
     session = await sessionService.create(user.id)
@@ -93,8 +89,6 @@ export async function signIn(prevState: unknown, formData: FormData) {
     httpOnly: true,
     // maxAge: 60 * 60 * 24, // 1 day // without maxAge it becomes session only
   })
-//  console.log(`redirecting to ${redirectTo}`)
-//  redirect(redirectTo || '/crm')
   respStatus.user = user
   return respStatus
 }

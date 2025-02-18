@@ -116,9 +116,6 @@ dist
 # DynamoDB Local files
 .dynamodb/
 
-# SQLite cache DBs
-**/*.db
-
 # TernJS port file
 .tern-port
 
@@ -136,3 +133,7 @@ dist
 .vscode
 
 .DS_Store
+
+# SQLite cache DBs
+**/*.db
+src/prisma/memCache/memCache.db

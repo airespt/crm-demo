@@ -1,4 +1,4 @@
-import { hasPermission } from "@/actions/auth/userPermissions"
+import { hasPermission } from "@/app/login/userPermissions"
 import { Center, Stack, Title } from "@mantine/core"
 import { ReactNode } from "react"
 
