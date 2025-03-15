@@ -22,7 +22,7 @@ export function EditVistasModal({
   const [editedVistaId, setEditedVistaId] = useState<string | undefined>('default')
   const editedVista = useMemo(() =>
     vistasGroupEdit?.vistas?.find(vista => vista.vistaId === editedVistaId)
-  , [vistasGroupEdit, vistasGroupEdit?.vistas, editedVistaId])
+  , [vistasGroupEdit, editedVistaId])
   
   const [pending, setPending] = useState(false)
   const [modalOpen, modalHandlers] = modalState
@@ -37,7 +37,14 @@ export function EditVistasModal({
     }
   }, [modalOpen])
   
-  
+  useEffect(() => {
+    console.log('State changes:', {
+      editedVistaId,
+      selectedVista: selectedVista?.vistaId,
+      editedVista: editedVista?.vistaId
+    });
+  }, [editedVistaId, selectedVista, editedVista])
+
   const handleOnCancel = useCallback(() => {
     modalHandlers.close()
   }, [])
@@ -79,7 +86,7 @@ export function EditVistasModal({
                 vistasGroup={vistasGroupEdit}
                 setVistasGroup={setVistasGroupEdit}
                 selectedVistaId={editedVistaId}
-                onVistaSelect={setEditedVistaId}
+                setSelectedVista={setEditedVistaId}
               />
             </Stack>
           </Grid.Col>

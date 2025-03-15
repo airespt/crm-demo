@@ -1,20 +1,20 @@
 'use client'
 
 import { AgGridReact } from "ag-grid-react"
-import { GridApi, GridReadyEvent, IRowDragItem, RowDragEndEvent } from "ag-grid-community";
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Container, Group, Overlay } from "@mantine/core";
-import { VistasView } from "./types";
+import { GridApi, GridReadyEvent, IRowDragItem, RowDragEndEvent } from "ag-grid-community"
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Group, Overlay } from "@mantine/core"
+import { VistasView } from "./types"
 
 type GridName = 'active' | 'all'
 export type FieldRow = {
-  field: string;
-  id: string;
+  field: string
+  id: string
 }
 
 type FieldsTableProps = {
-  selectedVista?: VistasView;
-  allFields: string[];
+  selectedVista?: VistasView
+  allFields: string[]
   //onFieldsChange?: (fields: FieldRow[]) => void;
 }
 
