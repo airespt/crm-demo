@@ -4,7 +4,6 @@ import { useSession } from '@/app/login/actions';
 import { UserPermissions } from '@/app/login/userPermissions';
 import { AccessGate } from '@/components/AccessGate';
 import { RolesPanel } from './RolesPanel';
-import { useDisclosure } from '@mantine/hooks';
 import { RolesEditorContextProvider } from './context';
 import { PermissionsPanel } from './PermissionsPanel'
 

@@ -49,9 +49,6 @@ export function EditVistasModal({
     console.log('response', response)
     setPending(false)
     if( response.success) {
-      // TODO: update vistasGroup to refresh table and set selected vista
-      // console.log('selectedVistaId', selectedVista?.vistaId, 'selectedvista', selectedVista?.vistaId)
-      // console.log('editedVistaId', editedVistaId, 'editedVista', editedVista?.vistaId)
       setVistasGroup(convertVistasGroupToView(response.data!))
       setSelectedVistaId(editedVistaId ?? null)
       modalHandlers.close()

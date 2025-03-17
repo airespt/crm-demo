@@ -36,7 +36,7 @@ export default function CrmLayout({ children }: { children: React.ReactNode }) {
         </NavLink>
         <NavLinkLogout />
       </AppShellNavbar>
-      <AppShellMain>
+      <AppShellMain style={{ height: '100dvh' }}>
         {children}
       </AppShellMain>
     </AppShell>

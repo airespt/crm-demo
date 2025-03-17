@@ -1,0 +1,10 @@
+
+body {
+  --ag-header-background-color: var(--mantine-color-gray-2);
+  --ag-row-hover-color: alpha(var(--mantine-color-blue-4), 0.2);
+  --ag-selected-row-background-color: alpha(var(--mantine-color-blue-3), 0.2);
+  --ag-row-border: 0;
+  --ag-font-family: var(--mantine-font-family);
+  --ag-font-size: var(--mantine-font-size-sm);
+  --ag-header-cell-font-weight: 600;
+}

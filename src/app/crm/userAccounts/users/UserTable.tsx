@@ -31,7 +31,6 @@ export function UserTable({ rowData }: UserTableProps) {
       <AgGridReact
         rowData={rowData}
         columnDefs={headers}
-        //defaultColDef={defaultColDef}
       />
     </>
   )
