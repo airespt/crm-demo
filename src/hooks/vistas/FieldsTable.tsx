@@ -47,7 +47,7 @@ export function FieldsTable({
         headerName: 'Field Name',
         field: 'field',
         flex: 1,
-      },  
+      },
     ],
     defaultColDef: {
       suppressMovable: true,
@@ -55,7 +55,7 @@ export function FieldsTable({
     },
     suppressCellFocus: true,
     suppressMovableColumns: true,
-    rowDragEntireRow: true,
+    //rowDragEntireRow: true,
     rowDragText: (params: IRowDragItem) => params.rowNode?.data.field,
   }), [])
 

@@ -1,9 +1,9 @@
 'use client'
 
 import { AgGridReact } from "ag-grid-react"
-import { ColDef, GridOptions, GridReadyEvent, RowClickedEvent, } from "ag-grid-community";
+import { CellClickedEvent, ColDef, GridApi, GridOptions, GridReadyEvent, RowClickedEvent, SelectionChangedEvent, } from "ag-grid-community";
 import { Dispatch, MouseEventHandler, SetStateAction, useCallback, useEffect, useMemo, useState } from 'react';
-import { ActionIcon, Button, Group, Popover } from "@mantine/core";
+import { ActionIcon, Button, Center, Group, Popover } from "@mantine/core";
 import { IconCopy, IconStar, IconStarFilled, IconTrash } from "@tabler/icons-react";
 import { VistasGroupView, VistasView } from "./types";
 import { randomId } from "@/utils";
@@ -21,27 +21,29 @@ type VistasTableProps = {
 }
 
 export function VistasTable({ vistasGroup, setVistasGroup, selectedVistaId, setSelectedVista }: VistasTableProps) {
+  const [gridApi, setGridApi] = useState<GridApi | null>(null) // active fields
+  
   const onGridReady = useCallback((params: GridReadyEvent) => {
+    setGridApi(params.api)
     const node = params.api.getRowNode(selectedVistaId || 'default')
-    node?.setSelected(true, true)
     if (node) {
       params.api.ensureNodeVisible(node, 'middle')
     }
   }, [])
 
-  const prevSelectedVistaId = usePrevious(selectedVistaId)
-
   useEffect(() => {
-    console.log('State changes:', {
-      selectedVista: selectedVistaId,
-      prevSelectedVistaId,
-    });
-  }, [selectedVistaId])
+    // console.log('State changes:', {
+    //   selectedVista: selectedVistaId,
+    //   prevSelectedVistaId,
+    // });
+    const node = gridApi?.getRowNode(selectedVistaId || 'default')
+    node?.setSelected(true, true)
 
-  const handleRowClicked = useCallback(({ data }: RowClickedEvent<VistasView, any>) => {
-    //console.log('select', data?.vistaId, selectedVista?.vistaId, prevSelectedVistaId, !!setSelectedVista)
-    if( !data || !setSelectedVista) return
-    setSelectedVista(data.vistaId)
+  }, [gridApi, selectedVistaId])
+
+  const handleCellClicked = useCallback(({ data, node, column }: CellClickedEvent<VistasView, any>) => {
+    if( column.getId() === 'buttons' ) return
+    setSelectedVista?.(data?.vistaId)
   }, [])
 
   const makeHandleFavouriteVista = useCallback((data: VistasView): MouseEventHandler<HTMLButtonElement> => (event) => {
@@ -67,28 +69,36 @@ export function VistasTable({ vistasGroup, setVistasGroup, selectedVistaId, setS
     } as VistasGroupView));
   }, [])
 
+  const prevSelectedVistaId = usePrevious(selectedVistaId)
+
   const makeHandleDeleteVista = useCallback((data: VistasView): MouseEventHandler<HTMLButtonElement> => (event) => {
     event.stopPropagation(); // Prevent event bubbling
-    //event.preventDefault()
+
+    const vistasAfterDelete = vistasGroup?.vistas.filter(vista => vista.vistaId !== data.vistaId) || []
+    if( data.vistaId === selectedVistaId ) {
+      const prevVista = vistasAfterDelete.some(x => x.vistaId === prevSelectedVistaId) && prevSelectedVistaId
+      const firstVista = vistasGroup?.vistas.find(vista => vista.vistaId !== data.vistaId)?.vistaId
+      setSelectedVista?.(prevVista || firstVista || 'default')
+    }
+
+    let favouriteVista = vistasGroup?.favouriteVista
+    if( data.vistaId === vistasGroup?.favouriteVista || vistasAfterDelete.every(x => x.vistaId !== favouriteVista) )
+      favouriteVista = vistasGroup?.vistas.find(vista => vista.vistaId !== data.vistaId)?.vistaId
+
     setVistasGroup(currentGroup => ({
       ...currentGroup,
-      vistas: (currentGroup?.vistas.filter(vista => vista.vistaId !== data.vistaId) || [])
+      favouriteVista,
+      vistas: vistasAfterDelete
     } as VistasGroupView))
-    console.log('delete', data.vistaId, selectedVistaId, prevSelectedVistaId)
-    if( data.vistaId === selectedVistaId ) {
-      setSelectedVista?.(prevSelectedVistaId || vistasGroup?.vistas.find(vista => vista.vistaId !== data.vistaId)?.vistaId || 'default')
-      // const node = api.getRowNode(selectedVistaId || 'default')
-      // node?.setSelected(true, true)
-      }
+
+
   }, [selectedVistaId, vistasGroup])
 
   const CellRenderer = useCallback((props: { value: any, data: VistasView }) => {
     return (
-      <Group justify='space-between'>
-        <Group gap={'xs'}>
-            {props.value}
-        </Group>
-        <Group gap={'xs'}>
+      <Center>
+        &nbsp;
+        <Group gap={6} wrap="nowrap" mr={'xs'}>
           <ActionIcon size='sm' radius={'xl'} color={'transparent'}
                       onClick={makeHandleFavouriteVista(props.data)}>
             {props.data.vistaId === vistasGroup?.favouriteVista
@@ -111,7 +121,7 @@ export function VistasTable({ vistasGroup, setVistasGroup, selectedVistaId, setS
               </Popover.Dropdown>
             </Popover>
         </Group>
-      </Group>
+      </Center>
     )
   }, [vistasGroup, makeHandleFavouriteVista, makeHandleCopyVista, makeHandleDeleteVista])
 
@@ -120,43 +130,38 @@ const columnDefs: ColDef<VistasView>[] = useMemo(() => [
       headerName: 'Vista Name',
       field: 'label',
       flex: 1,
-      cellStyle: (params: any) => {
-        if (params.data.vistaId === 'default') {
-          return { fontStyle: 'italic' }
-        }
-        return null
-      },
-      cellRenderer: CellRenderer,
-      suppressMovable: true,
+      cellStyle: (params: any) => params.data.vistaId === 'default'
+        ? { fontStyle: 'italic' } : null,
       sortable: true,
       editable: true,
+      resizable: false,
+      rowDrag: true,
     },
+    { //buttons column
+      colId: 'buttons',
+      type: 'rightAligned',
+      width: 92,
+      cellRenderer: CellRenderer,
+      resizable: false,
+      sortable: false,
+    }
   ], [CellRenderer])
 
   const gridOptions: GridOptions<VistasView> = useMemo(() => ({
-    rowSelection: { mode: "singleRow", checkboxes: false, enableClickSelection: true },
+    rowSelection: { mode: "singleRow", checkboxes: false, enableClickSelection: false },
     animateRows: true,
     suppressMovableColumns: true,
     suppressCellFocus: true,
     domLayout: 'autoHeight',
     headerHeight: 48,
     getRowId: (params) => params.data?.vistaId || 'default',
-    onRowClicked: handleRowClicked,
+    onCellClicked: handleCellClicked,
     getRowStyle: (params) => {
       return {
         backgroundColor: params.data?.hasChanges ? 'var(--mantine-color-yellow-2)' : 'transparent'
       }
     },
-  }), [handleRowClicked, selectedVistaId])
-
-  // const [rowData, selectedRow] = useMemo(() => [
-  //   vistasGroup?.vistas?.map(vista => ({
-  //     ...vista,
-  //     //hasChanges: vista.vistaId === selectedVistaId,
-  //   })) || [],
-  //   { selectedRow: [selectedVistaId || 'default'] } as GridState
-  // ], [vistasGroup, selectedVistaId])
-  // //console.log('vistasGroup', vistasGroup)
+  }), [])
 
   return (
     <div style={{ height: '60vh', width: '100%' }}>

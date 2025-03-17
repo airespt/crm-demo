@@ -1,31 +1,19 @@
-import { customerService } from "@/Services/customer";
-import { Group } from "@mantine/core";
-
 import { useSession } from '@/app/login/actions';
 import { UserPermissions } from '@/app/login/userPermissions';
 import { AccessGate } from '@/components/AccessGate';
+import { CustomerPanel } from "./CustomerPanel";
 
 export default async function Page() {
   const sessionUser = await useSession('/crm/customers');
   
-  const allCustomers = await customerService.list();
-
   return (
     <>
-      Customers page ({allCustomers.length})
       <AccessGate
         userAccess={sessionUser.role?.customers}
-        requiredPermissions={32}
+        requiredPermissions={UserPermissions.View}
       >
-        {allCustomers.map(x => (
-          <Group key={x.CustomerID}>
-            <span>{x.CustomerID} </span>
-            <span>{x.OrganizationName} </span>
-            <span>{x.Telephone1} </span>
-          </Group>
-        ))}
+        <CustomerPanel />
       </AccessGate>
-      
     </>
   )
 }

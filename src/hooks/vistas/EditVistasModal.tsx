@@ -37,14 +37,6 @@ export function EditVistasModal({
     }
   }, [modalOpen])
   
-  useEffect(() => {
-    console.log('State changes:', {
-      editedVistaId,
-      selectedVista: selectedVista?.vistaId,
-      editedVista: editedVista?.vistaId
-    });
-  }, [editedVistaId, selectedVista, editedVista])
-
   const handleOnCancel = useCallback(() => {
     modalHandlers.close()
   }, [])
@@ -98,7 +90,6 @@ export function EditVistasModal({
                 allFields={config.availableFields}
               />
             </Stack>
-            
           </Grid.Col>
         </Grid>
       </Container>
