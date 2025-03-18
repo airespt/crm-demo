@@ -4,7 +4,7 @@ import { AgGridReact } from "ag-grid-react"
 import { GridApi, GridReadyEvent, IRowDragItem, RowDragEndEvent } from "ag-grid-community"
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Group, Overlay } from "@mantine/core"
-import { VistasView } from "./types"
+import { useVistasContext } from "@/contexts/Vistas/VistasContext"
 
 type GridName = 'active' | 'all'
 export type FieldRow = {
@@ -12,16 +12,13 @@ export type FieldRow = {
   id: string
 }
 
-type FieldsTableProps = {
-  selectedVista?: VistasView
-  allFields: string[]
-  //onFieldsChange?: (fields: FieldRow[]) => void;
-}
+export function FieldsTable() {
+  const {
+    config,
+    editedVista,
+    setFields,
+  } = useVistasContext()
 
-export function FieldsTable({
-  selectedVista,
-  allFields
-}: FieldsTableProps) {
   const [activeGridApi, setActiveGridApi] = useState<GridApi | null>(null) // active fields
   const [allGridApi, setAllGridApi] = useState<GridApi | null>(null) // all available fields
   const makeOnGridReady = useCallback((side: GridName) => {
@@ -41,11 +38,13 @@ export function FieldsTable({
     }
   }, [activeGridApi, allGridApi])
 
+  const allFields = config.availableFields
+
   const sharedGridOptions = useMemo(() => ({
     columnDefs: [
       {
         headerName: 'Field Name',
-        field: 'field',
+        field: 'label',
         flex: 1,
       },
     ],
@@ -55,62 +54,79 @@ export function FieldsTable({
     },
     suppressCellFocus: true,
     suppressMovableColumns: true,
-    //rowDragEntireRow: true,
+    rowDragEntireRow: true,
     rowDragText: (params: IRowDragItem) => params.rowNode?.data.field,
   }), [])
 
-  const makeGridRowDragEnd = useCallback((side: GridName) => {
-    return (event: RowDragEndEvent) => {
+  const makeGridRowDragEnd = useCallback((toSide: GridName) => {
+    return (event: RowDragEndEvent<FieldRow>) => {
       const { node, overNode } = event
-
-      if (overNode?.data) 
-        console.log('dragged', node.rowIndex, 'over', overNode.rowIndex || 0, side)
-      else
-        console.log('dragged', node.rowIndex, 'to end', side)
-
-      // const draggedIndex = allFields.findIndex(f => f.id === node.data.id)
-      // const targetIndex = allFields.findIndex(f => f.id === overNode.data.id)
+      if( !node.data ) return
       
-      // const newFields = Array.from(allFields)
-      // const [draggedItem] = newFields.splice(draggedIndex, 1)
-      // newFields.splice(targetIndex, 0, draggedItem)
-      
-      //onFieldsChange(newFields)
+      const fromSide: GridName = editedVista?.fields.includes(node.data.id) ? 'active' : 'all'
+      const fromIndex = node.rowIndex ?? 0
+
+      const activeFieldsLength = editedVista?.fields.length ?? 0
+      const toIndex = overNode
+        ? overNode.rowIndex || 0
+        : toSide === 'active' ? activeFieldsLength : allFields.length - activeFieldsLength
+
+      //console.log(fromSide, 'dragged', fromIndex, 'over', toIndex, toSide)
+
+      if( fromSide === 'active' && toSide === 'all') {
+        // remove from active
+        setFields?.(editedVista?.fields.filter(x => x !== node.data!.id) ?? [])
+      }
+      else if( fromSide === 'all' && toSide === 'active' ) {
+        // insert into active
+        const tempCopy = [...editedVista?.fields ?? []]
+        tempCopy.splice(toIndex, 0, node.data.id)
+        setFields?.(tempCopy)
+      }
+      else if( fromSide === 'active' && toSide === 'active') {
+        // swap in active
+        const tempCopy = editedVista?.fields.filter(x => x !== node.data?.id) ?? []
+        if( toIndex < fromIndex ) {
+          tempCopy.splice(toIndex, 0, node.data.id)
+        }
+        else {
+          tempCopy.splice(toIndex - 1, 0, node.data.id)
+        }
+        setFields?.(tempCopy)
+      }
     }
-  }, [])
+  }, [editedVista])
 
-    const allFieldsRow = useMemo(() =>
-      allFields.reduce((acc, header) => {
-        if( selectedVista?.fields.includes(header) )
-          return acc
-        acc.push(header)
+  const allFieldsRow = useMemo(() =>
+    allFields.reduce((acc, header) => {
+      if( editedVista?.fields.includes(header) )
         return acc
-      }, [] as string[]).map(header => ({
-        field: header || '',
-        id: header
-      }))
-    , [selectedVista])
-
-    const vistaFieldsRow = useMemo(() => selectedVista?.fields.map((header) => ({
-      field: header || '',
+      acc.push(header)
+      return acc
+    }, [] as string[]).map(header => ({
+      label: header || '',
       id: header
-    })) || [], [selectedVista])
+    }))
+  , [editedVista])
+
+  const vistaFieldsRow = useMemo(() => editedVista?.fields.map((header) => ({
+    label: header || '',
+    id: header
+  })) || [], [editedVista])
 
   return (
     <div style={{ height: '60vh', width: '100%', position: 'relative' }}>
-      {selectedVista?.vistaId === 'default' && <Overlay color="#777" backgroundOpacity={0.85} radius={'md'} p={'md'}/>}
+      {editedVista?.vistaId === 'default' && <Overlay color="#777" backgroundOpacity={0.85} radius={'md'} p={'md'}/>}
       <Group h='60vh' grow>
         <AgGridReact
           gridOptions={sharedGridOptions}
           rowData={vistaFieldsRow}
-          //onRowDragEnter={makeGridRowDragEnter('active')}
           onRowDragEnd={makeGridRowDragEnd('active')}
           onGridReady={makeOnGridReady('active')}
           />
         <AgGridReact
           gridOptions={sharedGridOptions}
           rowData={allFieldsRow}
-          //onRowDragEnter={makeGridRowDragEnter('all')}
           onRowDragEnd={makeGridRowDragEnd('all')}
           onGridReady={makeOnGridReady('all')}
           />

@@ -1,4 +1,4 @@
-import { VistasView } from "@/hooks/vistas/types"
+import { VistasView } from "@/contexts/Vistas/types"
 
 export const vistaConfig = {
   defaultVista: {

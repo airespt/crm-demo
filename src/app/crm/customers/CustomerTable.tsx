@@ -2,33 +2,35 @@
 
 import { Grid, Stack } from '@mantine/core'
 import { AgGridReact } from 'ag-grid-react'
-import { themeBalham, type ColDef } from 'ag-grid-community'
+import { ColumnMovedEvent, themeBalham, type ColDef } from 'ag-grid-community'
 import { Customer } from '@/prisma/sageDb/interfaces'
-import { useState, useEffect } from 'react'
-import { useVistas } from '@/hooks/vistas/useVistas'
-import { vistaConfig } from './vistaConfig'
-import { EditVistasModal } from '@/hooks/vistas/EditVistasModal'
-
+import { useMemo } from 'react'
+import { EditVistasModal } from '@/contexts/Vistas/EditVistasModal'
+import { useVistasContext } from '@/contexts/Vistas/VistasContext'
 
 export interface CustomerTableProps {
   rowData: Customer[]
 }
 
 export function CustomerTable({ rowData }: CustomerTableProps) {
-  const [activeHeaders, setActiveHeaders] = useState<ColDef<Customer>[]>([])
+  const {
+    selectedVista,
+    VistasSelect,
+  } = useVistasContext()
 
-  const { VistasSelect, ...vistaControl } = useVistas(vistaConfig)
-
-  useEffect(() => {
-    if (!vistaControl.selectedVista) return
-    const activeFields = vistaControl.selectedVista.fields
-    const tableFields = activeFields.map(field => ({
+  const activeHeaders = useMemo(() => {
+    return selectedVista?.fields.map(field => ({
       headerName: field,
       field,
       valueFormatter: ({ value }) => value || '',
-    }) as ColDef<Customer>)
-    setActiveHeaders(tableFields)
-  }, [vistaControl.selectedVista])
+    }) as ColDef<Customer>) ?? []
+  }, [selectedVista])
+
+  // const handleColumnMoved = useCallback((event: ColumnMovedEvent<Customer>) => {
+  //   const cols = event.api.getColumnState()?.map(x => x.colId)
+  //   //console.log('columns', cols)
+  //   //vistaControl.
+  // }, [])
 
   return (
     <>
@@ -43,15 +45,17 @@ export function CustomerTable({ rowData }: CustomerTableProps) {
         rowData={rowData}
         columnDefs={activeHeaders}
         suppressCellFocus={true}
+        suppressDragLeaveHidesColumns={true}
         defaultColDef={{
           resizable: true,
           sortable: true,
           filter: true,
           wrapHeaderText: true,
         }}
+        //onColumnMoved={handleColumnMoved}
       />
     </Stack>
-    <EditVistasModal {...vistaControl} />
+    <EditVistasModal />
     </>
   )
 }

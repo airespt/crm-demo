@@ -1,15 +1,11 @@
 'use server'
 
+import { ActionResponse } from "@/actions/types"
 import { VistaGroup } from "@/prisma/coreDb/interfaces"
 import { vistasService } from "@/Services/vistas"
 
-type Response<T> = {
-  data: T | null
-  success: boolean
-  error?: string
-}
 
-export async function listVistas(groupId: string): Promise<Response<VistaGroup>> {
+export async function listVistas(groupId: string): Promise<ActionResponse<VistaGroup>> {
   try {
     const result = await vistasService.list(groupId)
     return {
@@ -26,7 +22,7 @@ export async function listVistas(groupId: string): Promise<Response<VistaGroup>>
   }
 }
 
-export async function updateGroup(group: VistaGroup): Promise<Response<VistaGroup>> {
+export async function updateGroup(group: VistaGroup): Promise<ActionResponse<VistaGroup>> {
   try {
     const result = await vistasService.update(group)
     return {
