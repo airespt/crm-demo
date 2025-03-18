@@ -9,7 +9,6 @@ import { vistaConfig } from "./vistaConfig";
 export async function CustomerPanel() {
   const response = await listCustomers()
 
-
   return (
     <Suspense fallback={
       <Center h={200}>

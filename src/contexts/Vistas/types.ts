@@ -2,7 +2,7 @@ import { VistaGroup, Vistas } from "@/prisma/coreDb/interfaces"
 
 export type VistaConfig = {
   defaultVista: VistasView,
-  availableFields: string[]
+  availableFields?: string[]
 }
 
 //*********************** */

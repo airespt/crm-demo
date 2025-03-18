@@ -8,6 +8,7 @@
     "analyze": "ANALYZE=true next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
+    "prisma-core-migrate": "prisma migrate dev --schema=./src/prisma/coreDb/schema.prisma",
     "prisma-core-client": "yarn prisma generate --schema ./src/prisma/coreDb/schema.prisma",
     "prisma-core-push": "yarn prisma db push --schema ./src/prisma/coreDb/schema.prisma",
     "prisma-cache-client": "yarn prisma generate --schema ./src/prisma/memCache/schema.prisma",
@@ -23,8 +24,7 @@
     "prettier-write": "prettier --write \"**/*.{ts,tsx}\"",
     "test": "npm run prettier:check && npm run lint && npm run typecheck && npm run jest",
     "storybook": "storybook dev -p 6006",
-    "storybook-build": "storybook build",
-    "migrate-core": "prisma migrate dev --schema=./src/prisma/coreDb/schema.prisma"
+    "storybook-build": "storybook build"
   },
   "dependencies": {
     "@mantine/core": "7.17.0",

@@ -1,6 +1,6 @@
 import { coreDb } from "@/prisma/coreDb/client";
-import { VistaGroup, Vistas } from "@/prisma/coreDb/interfaces";
-import { create } from "domain";
+import { VistaGroup } from "@/prisma/coreDb/interfaces";
+import { sageDb } from "@/prisma/sageDb/client";
 
 export async function getOrCreateGroup(groupId: string): Promise<VistaGroup> {
   try {
@@ -33,7 +33,8 @@ export async function updateGroup(group: VistaGroup): Promise<VistaGroup | null>
     const existingVistasMap = new Map(resultGroup.vistas.map(v => [v.vistaId, v]))
     
     const newVistas = vistas.filter(v => !existingVistasMap.has(v.vistaId))
-    const createdVistasResult = await coreDb.vistas.createMany({
+    //const createdVistasResult = 
+    await coreDb.vistas.createMany({
       data: newVistas.map(v => ({
         ...v,
         groupId
@@ -41,7 +42,8 @@ export async function updateGroup(group: VistaGroup): Promise<VistaGroup | null>
     })
 
     const updatedVistas = vistas.filter(v => existingVistasMap.has(v.vistaId))
-    const updatedVistasResult = await Promise.all(updatedVistas.map(v => {
+    //const updatedVistasResult = 
+    await Promise.all(updatedVistas.map(v => {
       const { vistaId, groupId, group, ...data } = v
       return coreDb.vistas.update({
         where: { groupId_vistaId: { groupId, vistaId } },
@@ -51,7 +53,8 @@ export async function updateGroup(group: VistaGroup): Promise<VistaGroup | null>
 
     const reqVistasMap = new Map(vistas.map(v => [v.vistaId, v]))
     const deletedVistas = resultGroup.vistas.filter(v => !reqVistasMap.has(v.vistaId))
-    const deletedVistasResult = await coreDb.vistas.deleteMany({
+    //const deletedVistasResult = 
+    await coreDb.vistas.deleteMany({
       where: {
         groupId,
         vistaId: {
@@ -68,3 +71,13 @@ export async function updateGroup(group: VistaGroup): Promise<VistaGroup | null>
   }
 }
 
+export function getTableFields(tableName: string) {
+  try {
+    const result = (sageDb as any)[tableName]?.fields
+    return result;
+  }
+  catch(e) {
+    console.log(JSON.stringify(e))
+    throw e
+  }
+}

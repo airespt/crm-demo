@@ -1,4 +1,5 @@
 import {
+  listFields,
   listVistas,
   updateGroup,
 } from "./vistasService";
@@ -6,4 +7,5 @@ import {
 export const vistasService = {
   list: listVistas,
   update: updateGroup,
+  listFields,
 }

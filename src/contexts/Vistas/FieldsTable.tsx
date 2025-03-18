@@ -14,7 +14,7 @@ export type FieldRow = {
 
 export function FieldsTable() {
   const {
-    config,
+    allFields,
     editedVista,
     setFields,
   } = useVistasContext()
@@ -37,8 +37,6 @@ export function FieldsTable() {
       allGridApi.removeRowDropZone(allDropZone)
     }
   }, [activeGridApi, allGridApi])
-
-  const allFields = config.availableFields
 
   const sharedGridOptions = useMemo(() => ({
     columnDefs: [
@@ -95,7 +93,7 @@ export function FieldsTable() {
         setFields?.(tempCopy)
       }
     }
-  }, [editedVista])
+  }, [editedVista, allFields])
 
   const allFieldsRow = useMemo(() =>
     allFields.reduce((acc, header) => {
@@ -107,7 +105,7 @@ export function FieldsTable() {
       label: header || '',
       id: header
     }))
-  , [editedVista])
+  , [editedVista, allFields])
 
   const vistaFieldsRow = useMemo(() => editedVista?.fields.map((header) => ({
     label: header || '',

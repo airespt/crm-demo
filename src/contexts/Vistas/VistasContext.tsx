@@ -1,5 +1,5 @@
 'use client'
-import { listVistas } from "@/contexts/Vistas/actions";
+import { listFields, listVistas } from "@/contexts/Vistas/actions";
 import { convertVistasGroupToView, VistaConfig, VistasGroupView, VistasView } from "@/contexts/Vistas/types";
 import { VistaGroup } from "@/prisma/coreDb/interfaces";
 import { randomId } from "@/utils";
@@ -11,7 +11,7 @@ import { createContext, Dispatch, ReactNode, SetStateAction, useCallback, useCon
 type VistasContext = {
   modalOpen: ReturnType<typeof useDisclosure>[0]
   modalHandlers: ReturnType<typeof useDisclosure>[1]
-  config: VistaConfig,
+  allFields: string[],
 
   vistasGroup: VistasGroupView | null,
   setVistasGroup: Dispatch<SetStateAction<VistasGroupView | null>>,
@@ -63,6 +63,8 @@ export function VistasContextProvider({ config, vistaGroup, children } : Provide
     }
   )
 
+  const [allFields, setAllFields] = useState([] as string[])
+
   useEffect(() => {
     const setter = (data: VistaGroup) => {
       const group = convertVistasGroupToView(data)
@@ -80,6 +82,17 @@ export function VistasContextProvider({ config, vistaGroup, children } : Provide
       listVistas(config.defaultVista.groupId).then(({ data, success }) => {
         if( data && success ) {
           setter(data)
+        }
+      })
+    }
+
+    if( config.availableFields ) {
+      setAllFields(config.availableFields)
+    }
+    else {
+      listFields(config.defaultVista.groupId).then(( response ) => {
+        if( response.success && response.data ) {
+          setAllFields(response.data)
         }
       })
     }
@@ -169,7 +182,7 @@ export function VistasContextProvider({ config, vistaGroup, children } : Provide
   const initialValue = useMemo<VistasContext>(() => ({
     modalOpen,
     modalHandlers,
-    config,
+    allFields,
 
     vistasGroup: vistasGroupView,
     setVistasGroup: setVistasGroupView,

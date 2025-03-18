@@ -38,3 +38,20 @@ export async function updateGroup(group: VistaGroup): Promise<ActionResponse<Vis
     }
   }
 }
+
+export async function listFields(groupId: string): Promise<ActionResponse<string[]>> {
+  try {
+    const result = vistasService.listFields(groupId, true) as string[]
+    return {
+      data: result,
+      success: true,
+    }
+  } catch (error) {
+    console.error('Failed to update vistas:', error)
+    return {
+      data: null,
+      success: false,
+      error: error instanceof Error ? error.message : `Failed to update vistas`,
+    }
+  }
+}
