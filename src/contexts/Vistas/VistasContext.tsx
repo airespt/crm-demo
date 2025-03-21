@@ -6,7 +6,7 @@ import { randomId } from "@/utils";
 import { ActionIcon, Group, Select } from "@mantine/core";
 import { useDisclosure, usePrevious } from "@mantine/hooks";
 import { IconChevronDown, IconSettings } from "@tabler/icons-react";
-import { createContext, Dispatch, ReactNode, SetStateAction, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, Dispatch, JSX, ReactNode, SetStateAction, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 type VistasContext = {
   modalOpen: ReturnType<typeof useDisclosure>[0]

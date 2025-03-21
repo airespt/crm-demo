@@ -21,3 +21,17 @@ export interface RolePermissions {
   customers: number;
   users?: User[];
 }
+
+export interface VistaGroup {
+  groupId: string;
+  favouriteVista: string;
+  vistas?: Vistas[];
+}
+
+export interface Vistas {
+  groupId: string;
+  group?: VistaGroup;
+  vistaId: string;
+  label: string;
+  fields: string;
+}

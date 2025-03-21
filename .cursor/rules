@@ -1,0 +1,45 @@
+prefer_single_quotes: |
+  Use single quotes for string literals unless the string contains single quotes.
+
+  Example:
+  ✅ const name = 'John'
+  ✅ const message = "It's a nice day"
+  ❌ const name = "John"
+
+  Exception: JSX attributes should use double quotes as per React convention:
+  ✅ <div className="container">
+  ❌ <div className='container'>
+
+prefer_types_over_interfaces: |
+  Use type aliases instead of interfaces unless you specifically need interface features like:
+  - Declaration merging
+  - Implementing/extending in classes
+  - Recursive type definitions where the type needs to be referenced before it's fully defined
+
+  Example:
+  ✅ type User = {
+    id: string;
+    name: string;
+  }
+
+  ❌ interface User {
+    id: string;
+    name: string;
+  }
+
+prefer_no_semicolons: |
+  Omit semicolons at the end of statements, relying on automatic semicolon insertion (ASI).
+
+  Example:
+  ✅ const greeting = 'Hello'
+  ✅ function sayHi() {
+       return 'Hi'
+     }
+  ❌ const greeting = 'Hello';
+  ❌ function sayHi() {
+       return 'Hi';
+     }
+
+  Exception: Use semicolons only when necessary to prevent ASI issues, such as:
+  - Lines beginning with (, [, `, +, -, or /
+  - Immediately Invoked Function Expressions (IIFEs)

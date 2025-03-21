@@ -6,14 +6,15 @@ Controller/actions -> Services -> Repos -> DB
 
 Repos
   Criam dataModels e retornam dataEntities completos
+  Podem encapsular varias operações para manter a DB em sync com as Entities
 
 Services
-  Omitem campos sensiveis (ex. password) substituindo por vazio ("")
-  chamam os repos para executar as operações
-  retornam dataEntities seguras para o client
+  Chamam os repos para executar as operações
+  Omitem campos sensiveis, tainting (ex. password) substituindo por vazio ("")
+  Retornam dataEntities seguras para o client
 
 Server actions
-  validam as permissoes do user da sessão
-  validam o formato do request
-  chamam os services para executar as operações
-  catch errors e formatam o resultado para o client
+  Validam as permissoes do user da sessão
+  Validam o formato do request
+  Chamam os services para executar as operações
+  Interceptam throws e formatam o resultado para o client

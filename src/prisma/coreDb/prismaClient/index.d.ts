@@ -23,6 +23,16 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * 
  */
 export type RolePermissions = $Result.DefaultSelection<Prisma.$RolePermissionsPayload>
+/**
+ * Model VistaGroup
+ * 
+ */
+export type VistaGroup = $Result.DefaultSelection<Prisma.$VistaGroupPayload>
+/**
+ * Model Vistas
+ * 
+ */
+export type Vistas = $Result.DefaultSelection<Prisma.$VistasPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -168,6 +178,26 @@ export class PrismaClient<
     * ```
     */
   get rolePermissions(): Prisma.RolePermissionsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.vistaGroup`: Exposes CRUD operations for the **VistaGroup** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VistaGroups
+    * const vistaGroups = await prisma.vistaGroup.findMany()
+    * ```
+    */
+  get vistaGroup(): Prisma.VistaGroupDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.vistas`: Exposes CRUD operations for the **Vistas** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Vistas
+    * const vistas = await prisma.vistas.findMany()
+    * ```
+    */
+  get vistas(): Prisma.VistasDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -609,7 +639,9 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    RolePermissions: 'RolePermissions'
+    RolePermissions: 'RolePermissions',
+    VistaGroup: 'VistaGroup',
+    Vistas: 'Vistas'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -625,7 +657,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "rolePermissions"
+      modelProps: "user" | "rolePermissions" | "vistaGroup" | "vistas"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -761,6 +793,138 @@ export namespace Prisma {
           }
         }
       }
+      VistaGroup: {
+        payload: Prisma.$VistaGroupPayload<ExtArgs>
+        fields: Prisma.VistaGroupFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VistaGroupFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistaGroupPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VistaGroupFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistaGroupPayload>
+          }
+          findFirst: {
+            args: Prisma.VistaGroupFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistaGroupPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VistaGroupFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistaGroupPayload>
+          }
+          findMany: {
+            args: Prisma.VistaGroupFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistaGroupPayload>[]
+          }
+          create: {
+            args: Prisma.VistaGroupCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistaGroupPayload>
+          }
+          createMany: {
+            args: Prisma.VistaGroupCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.VistaGroupDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistaGroupPayload>
+          }
+          update: {
+            args: Prisma.VistaGroupUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistaGroupPayload>
+          }
+          deleteMany: {
+            args: Prisma.VistaGroupDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VistaGroupUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.VistaGroupUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistaGroupPayload>
+          }
+          aggregate: {
+            args: Prisma.VistaGroupAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVistaGroup>
+          }
+          groupBy: {
+            args: Prisma.VistaGroupGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VistaGroupGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VistaGroupCountArgs<ExtArgs>
+            result: $Utils.Optional<VistaGroupCountAggregateOutputType> | number
+          }
+        }
+      }
+      Vistas: {
+        payload: Prisma.$VistasPayload<ExtArgs>
+        fields: Prisma.VistasFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VistasFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistasPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VistasFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistasPayload>
+          }
+          findFirst: {
+            args: Prisma.VistasFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistasPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VistasFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistasPayload>
+          }
+          findMany: {
+            args: Prisma.VistasFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistasPayload>[]
+          }
+          create: {
+            args: Prisma.VistasCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistasPayload>
+          }
+          createMany: {
+            args: Prisma.VistasCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.VistasDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistasPayload>
+          }
+          update: {
+            args: Prisma.VistasUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistasPayload>
+          }
+          deleteMany: {
+            args: Prisma.VistasDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VistasUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.VistasUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VistasPayload>
+          }
+          aggregate: {
+            args: Prisma.VistasAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVistas>
+          }
+          groupBy: {
+            args: Prisma.VistasGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VistasGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VistasCountArgs<ExtArgs>
+            result: $Utils.Optional<VistasCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -847,6 +1011,8 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     rolePermissions?: RolePermissionsOmit
+    vistaGroup?: VistaGroupOmit
+    vistas?: VistasOmit
   }
 
   /* Types for Logging */
@@ -964,6 +1130,37 @@ export namespace Prisma {
    */
   export type RolePermissionsCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserWhereInput
+  }
+
+
+  /**
+   * Count Type VistaGroupCountOutputType
+   */
+
+  export type VistaGroupCountOutputType = {
+    vistas: number
+  }
+
+  export type VistaGroupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vistas?: boolean | VistaGroupCountOutputTypeCountVistasArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * VistaGroupCountOutputType without action
+   */
+  export type VistaGroupCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VistaGroupCountOutputType
+     */
+    select?: VistaGroupCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * VistaGroupCountOutputType without action
+   */
+  export type VistaGroupCountOutputTypeCountVistasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VistasWhereInput
   }
 
 
@@ -2974,6 +3171,1828 @@ export namespace Prisma {
 
 
   /**
+   * Model VistaGroup
+   */
+
+  export type AggregateVistaGroup = {
+    _count: VistaGroupCountAggregateOutputType | null
+    _min: VistaGroupMinAggregateOutputType | null
+    _max: VistaGroupMaxAggregateOutputType | null
+  }
+
+  export type VistaGroupMinAggregateOutputType = {
+    groupId: string | null
+    favouriteVista: string | null
+  }
+
+  export type VistaGroupMaxAggregateOutputType = {
+    groupId: string | null
+    favouriteVista: string | null
+  }
+
+  export type VistaGroupCountAggregateOutputType = {
+    groupId: number
+    favouriteVista: number
+    _all: number
+  }
+
+
+  export type VistaGroupMinAggregateInputType = {
+    groupId?: true
+    favouriteVista?: true
+  }
+
+  export type VistaGroupMaxAggregateInputType = {
+    groupId?: true
+    favouriteVista?: true
+  }
+
+  export type VistaGroupCountAggregateInputType = {
+    groupId?: true
+    favouriteVista?: true
+    _all?: true
+  }
+
+  export type VistaGroupAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VistaGroup to aggregate.
+     */
+    where?: VistaGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VistaGroups to fetch.
+     */
+    orderBy?: VistaGroupOrderByWithRelationInput | VistaGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VistaGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VistaGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VistaGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned VistaGroups
+    **/
+    _count?: true | VistaGroupCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VistaGroupMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VistaGroupMaxAggregateInputType
+  }
+
+  export type GetVistaGroupAggregateType<T extends VistaGroupAggregateArgs> = {
+        [P in keyof T & keyof AggregateVistaGroup]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVistaGroup[P]>
+      : GetScalarType<T[P], AggregateVistaGroup[P]>
+  }
+
+
+
+
+  export type VistaGroupGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VistaGroupWhereInput
+    orderBy?: VistaGroupOrderByWithAggregationInput | VistaGroupOrderByWithAggregationInput[]
+    by: VistaGroupScalarFieldEnum[] | VistaGroupScalarFieldEnum
+    having?: VistaGroupScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VistaGroupCountAggregateInputType | true
+    _min?: VistaGroupMinAggregateInputType
+    _max?: VistaGroupMaxAggregateInputType
+  }
+
+  export type VistaGroupGroupByOutputType = {
+    groupId: string
+    favouriteVista: string
+    _count: VistaGroupCountAggregateOutputType | null
+    _min: VistaGroupMinAggregateOutputType | null
+    _max: VistaGroupMaxAggregateOutputType | null
+  }
+
+  type GetVistaGroupGroupByPayload<T extends VistaGroupGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VistaGroupGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VistaGroupGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VistaGroupGroupByOutputType[P]>
+            : GetScalarType<T[P], VistaGroupGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VistaGroupSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    groupId?: boolean
+    favouriteVista?: boolean
+    vistas?: boolean | VistaGroup$vistasArgs<ExtArgs>
+    _count?: boolean | VistaGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["vistaGroup"]>
+
+
+
+  export type VistaGroupSelectScalar = {
+    groupId?: boolean
+    favouriteVista?: boolean
+  }
+
+  export type VistaGroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"groupId" | "favouriteVista", ExtArgs["result"]["vistaGroup"]>
+  export type VistaGroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vistas?: boolean | VistaGroup$vistasArgs<ExtArgs>
+    _count?: boolean | VistaGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $VistaGroupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VistaGroup"
+    objects: {
+      vistas: Prisma.$VistasPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      groupId: string
+      favouriteVista: string
+    }, ExtArgs["result"]["vistaGroup"]>
+    composites: {}
+  }
+
+  type VistaGroupGetPayload<S extends boolean | null | undefined | VistaGroupDefaultArgs> = $Result.GetResult<Prisma.$VistaGroupPayload, S>
+
+  type VistaGroupCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VistaGroupFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VistaGroupCountAggregateInputType | true
+    }
+
+  export interface VistaGroupDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VistaGroup'], meta: { name: 'VistaGroup' } }
+    /**
+     * Find zero or one VistaGroup that matches the filter.
+     * @param {VistaGroupFindUniqueArgs} args - Arguments to find a VistaGroup
+     * @example
+     * // Get one VistaGroup
+     * const vistaGroup = await prisma.vistaGroup.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VistaGroupFindUniqueArgs>(args: SelectSubset<T, VistaGroupFindUniqueArgs<ExtArgs>>): Prisma__VistaGroupClient<$Result.GetResult<Prisma.$VistaGroupPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one VistaGroup that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VistaGroupFindUniqueOrThrowArgs} args - Arguments to find a VistaGroup
+     * @example
+     * // Get one VistaGroup
+     * const vistaGroup = await prisma.vistaGroup.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VistaGroupFindUniqueOrThrowArgs>(args: SelectSubset<T, VistaGroupFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VistaGroupClient<$Result.GetResult<Prisma.$VistaGroupPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first VistaGroup that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VistaGroupFindFirstArgs} args - Arguments to find a VistaGroup
+     * @example
+     * // Get one VistaGroup
+     * const vistaGroup = await prisma.vistaGroup.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VistaGroupFindFirstArgs>(args?: SelectSubset<T, VistaGroupFindFirstArgs<ExtArgs>>): Prisma__VistaGroupClient<$Result.GetResult<Prisma.$VistaGroupPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first VistaGroup that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VistaGroupFindFirstOrThrowArgs} args - Arguments to find a VistaGroup
+     * @example
+     * // Get one VistaGroup
+     * const vistaGroup = await prisma.vistaGroup.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VistaGroupFindFirstOrThrowArgs>(args?: SelectSubset<T, VistaGroupFindFirstOrThrowArgs<ExtArgs>>): Prisma__VistaGroupClient<$Result.GetResult<Prisma.$VistaGroupPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more VistaGroups that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VistaGroupFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all VistaGroups
+     * const vistaGroups = await prisma.vistaGroup.findMany()
+     * 
+     * // Get first 10 VistaGroups
+     * const vistaGroups = await prisma.vistaGroup.findMany({ take: 10 })
+     * 
+     * // Only select the `groupId`
+     * const vistaGroupWithGroupIdOnly = await prisma.vistaGroup.findMany({ select: { groupId: true } })
+     * 
+     */
+    findMany<T extends VistaGroupFindManyArgs>(args?: SelectSubset<T, VistaGroupFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VistaGroupPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a VistaGroup.
+     * @param {VistaGroupCreateArgs} args - Arguments to create a VistaGroup.
+     * @example
+     * // Create one VistaGroup
+     * const VistaGroup = await prisma.vistaGroup.create({
+     *   data: {
+     *     // ... data to create a VistaGroup
+     *   }
+     * })
+     * 
+     */
+    create<T extends VistaGroupCreateArgs>(args: SelectSubset<T, VistaGroupCreateArgs<ExtArgs>>): Prisma__VistaGroupClient<$Result.GetResult<Prisma.$VistaGroupPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many VistaGroups.
+     * @param {VistaGroupCreateManyArgs} args - Arguments to create many VistaGroups.
+     * @example
+     * // Create many VistaGroups
+     * const vistaGroup = await prisma.vistaGroup.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VistaGroupCreateManyArgs>(args?: SelectSubset<T, VistaGroupCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a VistaGroup.
+     * @param {VistaGroupDeleteArgs} args - Arguments to delete one VistaGroup.
+     * @example
+     * // Delete one VistaGroup
+     * const VistaGroup = await prisma.vistaGroup.delete({
+     *   where: {
+     *     // ... filter to delete one VistaGroup
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VistaGroupDeleteArgs>(args: SelectSubset<T, VistaGroupDeleteArgs<ExtArgs>>): Prisma__VistaGroupClient<$Result.GetResult<Prisma.$VistaGroupPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one VistaGroup.
+     * @param {VistaGroupUpdateArgs} args - Arguments to update one VistaGroup.
+     * @example
+     * // Update one VistaGroup
+     * const vistaGroup = await prisma.vistaGroup.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VistaGroupUpdateArgs>(args: SelectSubset<T, VistaGroupUpdateArgs<ExtArgs>>): Prisma__VistaGroupClient<$Result.GetResult<Prisma.$VistaGroupPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more VistaGroups.
+     * @param {VistaGroupDeleteManyArgs} args - Arguments to filter VistaGroups to delete.
+     * @example
+     * // Delete a few VistaGroups
+     * const { count } = await prisma.vistaGroup.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VistaGroupDeleteManyArgs>(args?: SelectSubset<T, VistaGroupDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VistaGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VistaGroupUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many VistaGroups
+     * const vistaGroup = await prisma.vistaGroup.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VistaGroupUpdateManyArgs>(args: SelectSubset<T, VistaGroupUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one VistaGroup.
+     * @param {VistaGroupUpsertArgs} args - Arguments to update or create a VistaGroup.
+     * @example
+     * // Update or create a VistaGroup
+     * const vistaGroup = await prisma.vistaGroup.upsert({
+     *   create: {
+     *     // ... data to create a VistaGroup
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the VistaGroup we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VistaGroupUpsertArgs>(args: SelectSubset<T, VistaGroupUpsertArgs<ExtArgs>>): Prisma__VistaGroupClient<$Result.GetResult<Prisma.$VistaGroupPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of VistaGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VistaGroupCountArgs} args - Arguments to filter VistaGroups to count.
+     * @example
+     * // Count the number of VistaGroups
+     * const count = await prisma.vistaGroup.count({
+     *   where: {
+     *     // ... the filter for the VistaGroups we want to count
+     *   }
+     * })
+    **/
+    count<T extends VistaGroupCountArgs>(
+      args?: Subset<T, VistaGroupCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VistaGroupCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a VistaGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VistaGroupAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VistaGroupAggregateArgs>(args: Subset<T, VistaGroupAggregateArgs>): Prisma.PrismaPromise<GetVistaGroupAggregateType<T>>
+
+    /**
+     * Group by VistaGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VistaGroupGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VistaGroupGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VistaGroupGroupByArgs['orderBy'] }
+        : { orderBy?: VistaGroupGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VistaGroupGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVistaGroupGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the VistaGroup model
+   */
+  readonly fields: VistaGroupFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for VistaGroup.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VistaGroupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    vistas<T extends VistaGroup$vistasArgs<ExtArgs> = {}>(args?: Subset<T, VistaGroup$vistasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VistasPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the VistaGroup model
+   */ 
+  interface VistaGroupFieldRefs {
+    readonly groupId: FieldRef<"VistaGroup", 'String'>
+    readonly favouriteVista: FieldRef<"VistaGroup", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * VistaGroup findUnique
+   */
+  export type VistaGroupFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VistaGroup
+     */
+    select?: VistaGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VistaGroup
+     */
+    omit?: VistaGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistaGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which VistaGroup to fetch.
+     */
+    where: VistaGroupWhereUniqueInput
+  }
+
+  /**
+   * VistaGroup findUniqueOrThrow
+   */
+  export type VistaGroupFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VistaGroup
+     */
+    select?: VistaGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VistaGroup
+     */
+    omit?: VistaGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistaGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which VistaGroup to fetch.
+     */
+    where: VistaGroupWhereUniqueInput
+  }
+
+  /**
+   * VistaGroup findFirst
+   */
+  export type VistaGroupFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VistaGroup
+     */
+    select?: VistaGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VistaGroup
+     */
+    omit?: VistaGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistaGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which VistaGroup to fetch.
+     */
+    where?: VistaGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VistaGroups to fetch.
+     */
+    orderBy?: VistaGroupOrderByWithRelationInput | VistaGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VistaGroups.
+     */
+    cursor?: VistaGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VistaGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VistaGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VistaGroups.
+     */
+    distinct?: VistaGroupScalarFieldEnum | VistaGroupScalarFieldEnum[]
+  }
+
+  /**
+   * VistaGroup findFirstOrThrow
+   */
+  export type VistaGroupFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VistaGroup
+     */
+    select?: VistaGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VistaGroup
+     */
+    omit?: VistaGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistaGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which VistaGroup to fetch.
+     */
+    where?: VistaGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VistaGroups to fetch.
+     */
+    orderBy?: VistaGroupOrderByWithRelationInput | VistaGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VistaGroups.
+     */
+    cursor?: VistaGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VistaGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VistaGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VistaGroups.
+     */
+    distinct?: VistaGroupScalarFieldEnum | VistaGroupScalarFieldEnum[]
+  }
+
+  /**
+   * VistaGroup findMany
+   */
+  export type VistaGroupFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VistaGroup
+     */
+    select?: VistaGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VistaGroup
+     */
+    omit?: VistaGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistaGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which VistaGroups to fetch.
+     */
+    where?: VistaGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VistaGroups to fetch.
+     */
+    orderBy?: VistaGroupOrderByWithRelationInput | VistaGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing VistaGroups.
+     */
+    cursor?: VistaGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VistaGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VistaGroups.
+     */
+    skip?: number
+    distinct?: VistaGroupScalarFieldEnum | VistaGroupScalarFieldEnum[]
+  }
+
+  /**
+   * VistaGroup create
+   */
+  export type VistaGroupCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VistaGroup
+     */
+    select?: VistaGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VistaGroup
+     */
+    omit?: VistaGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistaGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to create a VistaGroup.
+     */
+    data: XOR<VistaGroupCreateInput, VistaGroupUncheckedCreateInput>
+  }
+
+  /**
+   * VistaGroup createMany
+   */
+  export type VistaGroupCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many VistaGroups.
+     */
+    data: VistaGroupCreateManyInput | VistaGroupCreateManyInput[]
+  }
+
+  /**
+   * VistaGroup update
+   */
+  export type VistaGroupUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VistaGroup
+     */
+    select?: VistaGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VistaGroup
+     */
+    omit?: VistaGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistaGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to update a VistaGroup.
+     */
+    data: XOR<VistaGroupUpdateInput, VistaGroupUncheckedUpdateInput>
+    /**
+     * Choose, which VistaGroup to update.
+     */
+    where: VistaGroupWhereUniqueInput
+  }
+
+  /**
+   * VistaGroup updateMany
+   */
+  export type VistaGroupUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update VistaGroups.
+     */
+    data: XOR<VistaGroupUpdateManyMutationInput, VistaGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which VistaGroups to update
+     */
+    where?: VistaGroupWhereInput
+  }
+
+  /**
+   * VistaGroup upsert
+   */
+  export type VistaGroupUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VistaGroup
+     */
+    select?: VistaGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VistaGroup
+     */
+    omit?: VistaGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistaGroupInclude<ExtArgs> | null
+    /**
+     * The filter to search for the VistaGroup to update in case it exists.
+     */
+    where: VistaGroupWhereUniqueInput
+    /**
+     * In case the VistaGroup found by the `where` argument doesn't exist, create a new VistaGroup with this data.
+     */
+    create: XOR<VistaGroupCreateInput, VistaGroupUncheckedCreateInput>
+    /**
+     * In case the VistaGroup was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VistaGroupUpdateInput, VistaGroupUncheckedUpdateInput>
+  }
+
+  /**
+   * VistaGroup delete
+   */
+  export type VistaGroupDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VistaGroup
+     */
+    select?: VistaGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VistaGroup
+     */
+    omit?: VistaGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistaGroupInclude<ExtArgs> | null
+    /**
+     * Filter which VistaGroup to delete.
+     */
+    where: VistaGroupWhereUniqueInput
+  }
+
+  /**
+   * VistaGroup deleteMany
+   */
+  export type VistaGroupDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VistaGroups to delete
+     */
+    where?: VistaGroupWhereInput
+  }
+
+  /**
+   * VistaGroup.vistas
+   */
+  export type VistaGroup$vistasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vistas
+     */
+    select?: VistasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vistas
+     */
+    omit?: VistasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistasInclude<ExtArgs> | null
+    where?: VistasWhereInput
+    orderBy?: VistasOrderByWithRelationInput | VistasOrderByWithRelationInput[]
+    cursor?: VistasWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VistasScalarFieldEnum | VistasScalarFieldEnum[]
+  }
+
+  /**
+   * VistaGroup without action
+   */
+  export type VistaGroupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VistaGroup
+     */
+    select?: VistaGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VistaGroup
+     */
+    omit?: VistaGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistaGroupInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Vistas
+   */
+
+  export type AggregateVistas = {
+    _count: VistasCountAggregateOutputType | null
+    _min: VistasMinAggregateOutputType | null
+    _max: VistasMaxAggregateOutputType | null
+  }
+
+  export type VistasMinAggregateOutputType = {
+    groupId: string | null
+    vistaId: string | null
+    label: string | null
+    fields: string | null
+  }
+
+  export type VistasMaxAggregateOutputType = {
+    groupId: string | null
+    vistaId: string | null
+    label: string | null
+    fields: string | null
+  }
+
+  export type VistasCountAggregateOutputType = {
+    groupId: number
+    vistaId: number
+    label: number
+    fields: number
+    _all: number
+  }
+
+
+  export type VistasMinAggregateInputType = {
+    groupId?: true
+    vistaId?: true
+    label?: true
+    fields?: true
+  }
+
+  export type VistasMaxAggregateInputType = {
+    groupId?: true
+    vistaId?: true
+    label?: true
+    fields?: true
+  }
+
+  export type VistasCountAggregateInputType = {
+    groupId?: true
+    vistaId?: true
+    label?: true
+    fields?: true
+    _all?: true
+  }
+
+  export type VistasAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Vistas to aggregate.
+     */
+    where?: VistasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vistas to fetch.
+     */
+    orderBy?: VistasOrderByWithRelationInput | VistasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VistasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vistas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vistas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Vistas
+    **/
+    _count?: true | VistasCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VistasMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VistasMaxAggregateInputType
+  }
+
+  export type GetVistasAggregateType<T extends VistasAggregateArgs> = {
+        [P in keyof T & keyof AggregateVistas]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVistas[P]>
+      : GetScalarType<T[P], AggregateVistas[P]>
+  }
+
+
+
+
+  export type VistasGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VistasWhereInput
+    orderBy?: VistasOrderByWithAggregationInput | VistasOrderByWithAggregationInput[]
+    by: VistasScalarFieldEnum[] | VistasScalarFieldEnum
+    having?: VistasScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VistasCountAggregateInputType | true
+    _min?: VistasMinAggregateInputType
+    _max?: VistasMaxAggregateInputType
+  }
+
+  export type VistasGroupByOutputType = {
+    groupId: string
+    vistaId: string
+    label: string
+    fields: string
+    _count: VistasCountAggregateOutputType | null
+    _min: VistasMinAggregateOutputType | null
+    _max: VistasMaxAggregateOutputType | null
+  }
+
+  type GetVistasGroupByPayload<T extends VistasGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VistasGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VistasGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VistasGroupByOutputType[P]>
+            : GetScalarType<T[P], VistasGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VistasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    groupId?: boolean
+    vistaId?: boolean
+    label?: boolean
+    fields?: boolean
+    group?: boolean | VistaGroupDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["vistas"]>
+
+
+
+  export type VistasSelectScalar = {
+    groupId?: boolean
+    vistaId?: boolean
+    label?: boolean
+    fields?: boolean
+  }
+
+  export type VistasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"groupId" | "vistaId" | "label" | "fields", ExtArgs["result"]["vistas"]>
+  export type VistasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    group?: boolean | VistaGroupDefaultArgs<ExtArgs>
+  }
+
+  export type $VistasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Vistas"
+    objects: {
+      group: Prisma.$VistaGroupPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      groupId: string
+      vistaId: string
+      label: string
+      fields: string
+    }, ExtArgs["result"]["vistas"]>
+    composites: {}
+  }
+
+  type VistasGetPayload<S extends boolean | null | undefined | VistasDefaultArgs> = $Result.GetResult<Prisma.$VistasPayload, S>
+
+  type VistasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VistasFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VistasCountAggregateInputType | true
+    }
+
+  export interface VistasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Vistas'], meta: { name: 'Vistas' } }
+    /**
+     * Find zero or one Vistas that matches the filter.
+     * @param {VistasFindUniqueArgs} args - Arguments to find a Vistas
+     * @example
+     * // Get one Vistas
+     * const vistas = await prisma.vistas.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VistasFindUniqueArgs>(args: SelectSubset<T, VistasFindUniqueArgs<ExtArgs>>): Prisma__VistasClient<$Result.GetResult<Prisma.$VistasPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Vistas that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VistasFindUniqueOrThrowArgs} args - Arguments to find a Vistas
+     * @example
+     * // Get one Vistas
+     * const vistas = await prisma.vistas.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VistasFindUniqueOrThrowArgs>(args: SelectSubset<T, VistasFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VistasClient<$Result.GetResult<Prisma.$VistasPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Vistas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VistasFindFirstArgs} args - Arguments to find a Vistas
+     * @example
+     * // Get one Vistas
+     * const vistas = await prisma.vistas.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VistasFindFirstArgs>(args?: SelectSubset<T, VistasFindFirstArgs<ExtArgs>>): Prisma__VistasClient<$Result.GetResult<Prisma.$VistasPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Vistas that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VistasFindFirstOrThrowArgs} args - Arguments to find a Vistas
+     * @example
+     * // Get one Vistas
+     * const vistas = await prisma.vistas.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VistasFindFirstOrThrowArgs>(args?: SelectSubset<T, VistasFindFirstOrThrowArgs<ExtArgs>>): Prisma__VistasClient<$Result.GetResult<Prisma.$VistasPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Vistas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VistasFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Vistas
+     * const vistas = await prisma.vistas.findMany()
+     * 
+     * // Get first 10 Vistas
+     * const vistas = await prisma.vistas.findMany({ take: 10 })
+     * 
+     * // Only select the `groupId`
+     * const vistasWithGroupIdOnly = await prisma.vistas.findMany({ select: { groupId: true } })
+     * 
+     */
+    findMany<T extends VistasFindManyArgs>(args?: SelectSubset<T, VistasFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VistasPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Vistas.
+     * @param {VistasCreateArgs} args - Arguments to create a Vistas.
+     * @example
+     * // Create one Vistas
+     * const Vistas = await prisma.vistas.create({
+     *   data: {
+     *     // ... data to create a Vistas
+     *   }
+     * })
+     * 
+     */
+    create<T extends VistasCreateArgs>(args: SelectSubset<T, VistasCreateArgs<ExtArgs>>): Prisma__VistasClient<$Result.GetResult<Prisma.$VistasPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Vistas.
+     * @param {VistasCreateManyArgs} args - Arguments to create many Vistas.
+     * @example
+     * // Create many Vistas
+     * const vistas = await prisma.vistas.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VistasCreateManyArgs>(args?: SelectSubset<T, VistasCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Vistas.
+     * @param {VistasDeleteArgs} args - Arguments to delete one Vistas.
+     * @example
+     * // Delete one Vistas
+     * const Vistas = await prisma.vistas.delete({
+     *   where: {
+     *     // ... filter to delete one Vistas
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VistasDeleteArgs>(args: SelectSubset<T, VistasDeleteArgs<ExtArgs>>): Prisma__VistasClient<$Result.GetResult<Prisma.$VistasPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Vistas.
+     * @param {VistasUpdateArgs} args - Arguments to update one Vistas.
+     * @example
+     * // Update one Vistas
+     * const vistas = await prisma.vistas.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VistasUpdateArgs>(args: SelectSubset<T, VistasUpdateArgs<ExtArgs>>): Prisma__VistasClient<$Result.GetResult<Prisma.$VistasPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Vistas.
+     * @param {VistasDeleteManyArgs} args - Arguments to filter Vistas to delete.
+     * @example
+     * // Delete a few Vistas
+     * const { count } = await prisma.vistas.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VistasDeleteManyArgs>(args?: SelectSubset<T, VistasDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Vistas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VistasUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Vistas
+     * const vistas = await prisma.vistas.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VistasUpdateManyArgs>(args: SelectSubset<T, VistasUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Vistas.
+     * @param {VistasUpsertArgs} args - Arguments to update or create a Vistas.
+     * @example
+     * // Update or create a Vistas
+     * const vistas = await prisma.vistas.upsert({
+     *   create: {
+     *     // ... data to create a Vistas
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Vistas we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VistasUpsertArgs>(args: SelectSubset<T, VistasUpsertArgs<ExtArgs>>): Prisma__VistasClient<$Result.GetResult<Prisma.$VistasPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Vistas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VistasCountArgs} args - Arguments to filter Vistas to count.
+     * @example
+     * // Count the number of Vistas
+     * const count = await prisma.vistas.count({
+     *   where: {
+     *     // ... the filter for the Vistas we want to count
+     *   }
+     * })
+    **/
+    count<T extends VistasCountArgs>(
+      args?: Subset<T, VistasCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VistasCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Vistas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VistasAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VistasAggregateArgs>(args: Subset<T, VistasAggregateArgs>): Prisma.PrismaPromise<GetVistasAggregateType<T>>
+
+    /**
+     * Group by Vistas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VistasGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VistasGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VistasGroupByArgs['orderBy'] }
+        : { orderBy?: VistasGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VistasGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVistasGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Vistas model
+   */
+  readonly fields: VistasFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Vistas.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VistasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    group<T extends VistaGroupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VistaGroupDefaultArgs<ExtArgs>>): Prisma__VistaGroupClient<$Result.GetResult<Prisma.$VistaGroupPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Vistas model
+   */ 
+  interface VistasFieldRefs {
+    readonly groupId: FieldRef<"Vistas", 'String'>
+    readonly vistaId: FieldRef<"Vistas", 'String'>
+    readonly label: FieldRef<"Vistas", 'String'>
+    readonly fields: FieldRef<"Vistas", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Vistas findUnique
+   */
+  export type VistasFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vistas
+     */
+    select?: VistasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vistas
+     */
+    omit?: VistasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistasInclude<ExtArgs> | null
+    /**
+     * Filter, which Vistas to fetch.
+     */
+    where: VistasWhereUniqueInput
+  }
+
+  /**
+   * Vistas findUniqueOrThrow
+   */
+  export type VistasFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vistas
+     */
+    select?: VistasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vistas
+     */
+    omit?: VistasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistasInclude<ExtArgs> | null
+    /**
+     * Filter, which Vistas to fetch.
+     */
+    where: VistasWhereUniqueInput
+  }
+
+  /**
+   * Vistas findFirst
+   */
+  export type VistasFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vistas
+     */
+    select?: VistasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vistas
+     */
+    omit?: VistasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistasInclude<ExtArgs> | null
+    /**
+     * Filter, which Vistas to fetch.
+     */
+    where?: VistasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vistas to fetch.
+     */
+    orderBy?: VistasOrderByWithRelationInput | VistasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Vistas.
+     */
+    cursor?: VistasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vistas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vistas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Vistas.
+     */
+    distinct?: VistasScalarFieldEnum | VistasScalarFieldEnum[]
+  }
+
+  /**
+   * Vistas findFirstOrThrow
+   */
+  export type VistasFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vistas
+     */
+    select?: VistasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vistas
+     */
+    omit?: VistasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistasInclude<ExtArgs> | null
+    /**
+     * Filter, which Vistas to fetch.
+     */
+    where?: VistasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vistas to fetch.
+     */
+    orderBy?: VistasOrderByWithRelationInput | VistasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Vistas.
+     */
+    cursor?: VistasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vistas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vistas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Vistas.
+     */
+    distinct?: VistasScalarFieldEnum | VistasScalarFieldEnum[]
+  }
+
+  /**
+   * Vistas findMany
+   */
+  export type VistasFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vistas
+     */
+    select?: VistasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vistas
+     */
+    omit?: VistasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistasInclude<ExtArgs> | null
+    /**
+     * Filter, which Vistas to fetch.
+     */
+    where?: VistasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Vistas to fetch.
+     */
+    orderBy?: VistasOrderByWithRelationInput | VistasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Vistas.
+     */
+    cursor?: VistasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Vistas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Vistas.
+     */
+    skip?: number
+    distinct?: VistasScalarFieldEnum | VistasScalarFieldEnum[]
+  }
+
+  /**
+   * Vistas create
+   */
+  export type VistasCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vistas
+     */
+    select?: VistasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vistas
+     */
+    omit?: VistasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistasInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Vistas.
+     */
+    data: XOR<VistasCreateInput, VistasUncheckedCreateInput>
+  }
+
+  /**
+   * Vistas createMany
+   */
+  export type VistasCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Vistas.
+     */
+    data: VistasCreateManyInput | VistasCreateManyInput[]
+  }
+
+  /**
+   * Vistas update
+   */
+  export type VistasUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vistas
+     */
+    select?: VistasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vistas
+     */
+    omit?: VistasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistasInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Vistas.
+     */
+    data: XOR<VistasUpdateInput, VistasUncheckedUpdateInput>
+    /**
+     * Choose, which Vistas to update.
+     */
+    where: VistasWhereUniqueInput
+  }
+
+  /**
+   * Vistas updateMany
+   */
+  export type VistasUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Vistas.
+     */
+    data: XOR<VistasUpdateManyMutationInput, VistasUncheckedUpdateManyInput>
+    /**
+     * Filter which Vistas to update
+     */
+    where?: VistasWhereInput
+  }
+
+  /**
+   * Vistas upsert
+   */
+  export type VistasUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vistas
+     */
+    select?: VistasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vistas
+     */
+    omit?: VistasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistasInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Vistas to update in case it exists.
+     */
+    where: VistasWhereUniqueInput
+    /**
+     * In case the Vistas found by the `where` argument doesn't exist, create a new Vistas with this data.
+     */
+    create: XOR<VistasCreateInput, VistasUncheckedCreateInput>
+    /**
+     * In case the Vistas was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VistasUpdateInput, VistasUncheckedUpdateInput>
+  }
+
+  /**
+   * Vistas delete
+   */
+  export type VistasDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vistas
+     */
+    select?: VistasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vistas
+     */
+    omit?: VistasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistasInclude<ExtArgs> | null
+    /**
+     * Filter which Vistas to delete.
+     */
+    where: VistasWhereUniqueInput
+  }
+
+  /**
+   * Vistas deleteMany
+   */
+  export type VistasDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Vistas to delete
+     */
+    where?: VistasWhereInput
+  }
+
+  /**
+   * Vistas without action
+   */
+  export type VistasDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Vistas
+     */
+    select?: VistasSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Vistas
+     */
+    omit?: VistasOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VistasInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3012,6 +5031,24 @@ export namespace Prisma {
   };
 
   export type RolePermissionsScalarFieldEnum = (typeof RolePermissionsScalarFieldEnum)[keyof typeof RolePermissionsScalarFieldEnum]
+
+
+  export const VistaGroupScalarFieldEnum: {
+    groupId: 'groupId',
+    favouriteVista: 'favouriteVista'
+  };
+
+  export type VistaGroupScalarFieldEnum = (typeof VistaGroupScalarFieldEnum)[keyof typeof VistaGroupScalarFieldEnum]
+
+
+  export const VistasScalarFieldEnum: {
+    groupId: 'groupId',
+    vistaId: 'vistaId',
+    label: 'label',
+    fields: 'fields'
+  };
+
+  export type VistasScalarFieldEnum = (typeof VistasScalarFieldEnum)[keyof typeof VistasScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3200,6 +5237,97 @@ export namespace Prisma {
     customers?: IntWithAggregatesFilter<"RolePermissions"> | number
   }
 
+  export type VistaGroupWhereInput = {
+    AND?: VistaGroupWhereInput | VistaGroupWhereInput[]
+    OR?: VistaGroupWhereInput[]
+    NOT?: VistaGroupWhereInput | VistaGroupWhereInput[]
+    groupId?: StringFilter<"VistaGroup"> | string
+    favouriteVista?: StringFilter<"VistaGroup"> | string
+    vistas?: VistasListRelationFilter
+  }
+
+  export type VistaGroupOrderByWithRelationInput = {
+    groupId?: SortOrder
+    favouriteVista?: SortOrder
+    vistas?: VistasOrderByRelationAggregateInput
+  }
+
+  export type VistaGroupWhereUniqueInput = Prisma.AtLeast<{
+    groupId?: string
+    AND?: VistaGroupWhereInput | VistaGroupWhereInput[]
+    OR?: VistaGroupWhereInput[]
+    NOT?: VistaGroupWhereInput | VistaGroupWhereInput[]
+    favouriteVista?: StringFilter<"VistaGroup"> | string
+    vistas?: VistasListRelationFilter
+  }, "groupId">
+
+  export type VistaGroupOrderByWithAggregationInput = {
+    groupId?: SortOrder
+    favouriteVista?: SortOrder
+    _count?: VistaGroupCountOrderByAggregateInput
+    _max?: VistaGroupMaxOrderByAggregateInput
+    _min?: VistaGroupMinOrderByAggregateInput
+  }
+
+  export type VistaGroupScalarWhereWithAggregatesInput = {
+    AND?: VistaGroupScalarWhereWithAggregatesInput | VistaGroupScalarWhereWithAggregatesInput[]
+    OR?: VistaGroupScalarWhereWithAggregatesInput[]
+    NOT?: VistaGroupScalarWhereWithAggregatesInput | VistaGroupScalarWhereWithAggregatesInput[]
+    groupId?: StringWithAggregatesFilter<"VistaGroup"> | string
+    favouriteVista?: StringWithAggregatesFilter<"VistaGroup"> | string
+  }
+
+  export type VistasWhereInput = {
+    AND?: VistasWhereInput | VistasWhereInput[]
+    OR?: VistasWhereInput[]
+    NOT?: VistasWhereInput | VistasWhereInput[]
+    groupId?: StringFilter<"Vistas"> | string
+    vistaId?: StringFilter<"Vistas"> | string
+    label?: StringFilter<"Vistas"> | string
+    fields?: StringFilter<"Vistas"> | string
+    group?: XOR<VistaGroupScalarRelationFilter, VistaGroupWhereInput>
+  }
+
+  export type VistasOrderByWithRelationInput = {
+    groupId?: SortOrder
+    vistaId?: SortOrder
+    label?: SortOrder
+    fields?: SortOrder
+    group?: VistaGroupOrderByWithRelationInput
+  }
+
+  export type VistasWhereUniqueInput = Prisma.AtLeast<{
+    groupId_vistaId?: VistasGroupIdVistaIdCompoundUniqueInput
+    AND?: VistasWhereInput | VistasWhereInput[]
+    OR?: VistasWhereInput[]
+    NOT?: VistasWhereInput | VistasWhereInput[]
+    groupId?: StringFilter<"Vistas"> | string
+    vistaId?: StringFilter<"Vistas"> | string
+    label?: StringFilter<"Vistas"> | string
+    fields?: StringFilter<"Vistas"> | string
+    group?: XOR<VistaGroupScalarRelationFilter, VistaGroupWhereInput>
+  }, "groupId_vistaId">
+
+  export type VistasOrderByWithAggregationInput = {
+    groupId?: SortOrder
+    vistaId?: SortOrder
+    label?: SortOrder
+    fields?: SortOrder
+    _count?: VistasCountOrderByAggregateInput
+    _max?: VistasMaxOrderByAggregateInput
+    _min?: VistasMinOrderByAggregateInput
+  }
+
+  export type VistasScalarWhereWithAggregatesInput = {
+    AND?: VistasScalarWhereWithAggregatesInput | VistasScalarWhereWithAggregatesInput[]
+    OR?: VistasScalarWhereWithAggregatesInput[]
+    NOT?: VistasScalarWhereWithAggregatesInput | VistasScalarWhereWithAggregatesInput[]
+    groupId?: StringWithAggregatesFilter<"Vistas"> | string
+    vistaId?: StringWithAggregatesFilter<"Vistas"> | string
+    label?: StringWithAggregatesFilter<"Vistas"> | string
+    fields?: StringWithAggregatesFilter<"Vistas"> | string
+  }
+
   export type UserCreateInput = {
     name: string
     email: string
@@ -3333,6 +5461,93 @@ export namespace Prisma {
     userAccounts?: IntFieldUpdateOperationsInput | number
     rolePermissions?: IntFieldUpdateOperationsInput | number
     customers?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type VistaGroupCreateInput = {
+    groupId: string
+    favouriteVista?: string
+    vistas?: VistasCreateNestedManyWithoutGroupInput
+  }
+
+  export type VistaGroupUncheckedCreateInput = {
+    groupId: string
+    favouriteVista?: string
+    vistas?: VistasUncheckedCreateNestedManyWithoutGroupInput
+  }
+
+  export type VistaGroupUpdateInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+    favouriteVista?: StringFieldUpdateOperationsInput | string
+    vistas?: VistasUpdateManyWithoutGroupNestedInput
+  }
+
+  export type VistaGroupUncheckedUpdateInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+    favouriteVista?: StringFieldUpdateOperationsInput | string
+    vistas?: VistasUncheckedUpdateManyWithoutGroupNestedInput
+  }
+
+  export type VistaGroupCreateManyInput = {
+    groupId: string
+    favouriteVista?: string
+  }
+
+  export type VistaGroupUpdateManyMutationInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+    favouriteVista?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VistaGroupUncheckedUpdateManyInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+    favouriteVista?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VistasCreateInput = {
+    vistaId: string
+    label: string
+    fields: string
+    group: VistaGroupCreateNestedOneWithoutVistasInput
+  }
+
+  export type VistasUncheckedCreateInput = {
+    groupId: string
+    vistaId: string
+    label: string
+    fields: string
+  }
+
+  export type VistasUpdateInput = {
+    vistaId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    fields?: StringFieldUpdateOperationsInput | string
+    group?: VistaGroupUpdateOneRequiredWithoutVistasNestedInput
+  }
+
+  export type VistasUncheckedUpdateInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+    vistaId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    fields?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VistasCreateManyInput = {
+    groupId: string
+    vistaId: string
+    label: string
+    fields: string
+  }
+
+  export type VistasUpdateManyMutationInput = {
+    vistaId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    fields?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VistasUncheckedUpdateManyInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+    vistaId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    fields?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3551,6 +5766,62 @@ export namespace Prisma {
     customers?: SortOrder
   }
 
+  export type VistasListRelationFilter = {
+    every?: VistasWhereInput
+    some?: VistasWhereInput
+    none?: VistasWhereInput
+  }
+
+  export type VistasOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type VistaGroupCountOrderByAggregateInput = {
+    groupId?: SortOrder
+    favouriteVista?: SortOrder
+  }
+
+  export type VistaGroupMaxOrderByAggregateInput = {
+    groupId?: SortOrder
+    favouriteVista?: SortOrder
+  }
+
+  export type VistaGroupMinOrderByAggregateInput = {
+    groupId?: SortOrder
+    favouriteVista?: SortOrder
+  }
+
+  export type VistaGroupScalarRelationFilter = {
+    is?: VistaGroupWhereInput
+    isNot?: VistaGroupWhereInput
+  }
+
+  export type VistasGroupIdVistaIdCompoundUniqueInput = {
+    groupId: string
+    vistaId: string
+  }
+
+  export type VistasCountOrderByAggregateInput = {
+    groupId?: SortOrder
+    vistaId?: SortOrder
+    label?: SortOrder
+    fields?: SortOrder
+  }
+
+  export type VistasMaxOrderByAggregateInput = {
+    groupId?: SortOrder
+    vistaId?: SortOrder
+    label?: SortOrder
+    fields?: SortOrder
+  }
+
+  export type VistasMinOrderByAggregateInput = {
+    groupId?: SortOrder
+    vistaId?: SortOrder
+    label?: SortOrder
+    fields?: SortOrder
+  }
+
   export type RolePermissionsCreateNestedOneWithoutUsersInput = {
     create?: XOR<RolePermissionsCreateWithoutUsersInput, RolePermissionsUncheckedCreateWithoutUsersInput>
     connectOrCreate?: RolePermissionsCreateOrConnectWithoutUsersInput
@@ -3625,6 +5896,62 @@ export namespace Prisma {
     update?: UserUpdateWithWhereUniqueWithoutRoleInput | UserUpdateWithWhereUniqueWithoutRoleInput[]
     updateMany?: UserUpdateManyWithWhereWithoutRoleInput | UserUpdateManyWithWhereWithoutRoleInput[]
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type VistasCreateNestedManyWithoutGroupInput = {
+    create?: XOR<VistasCreateWithoutGroupInput, VistasUncheckedCreateWithoutGroupInput> | VistasCreateWithoutGroupInput[] | VistasUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: VistasCreateOrConnectWithoutGroupInput | VistasCreateOrConnectWithoutGroupInput[]
+    createMany?: VistasCreateManyGroupInputEnvelope
+    connect?: VistasWhereUniqueInput | VistasWhereUniqueInput[]
+  }
+
+  export type VistasUncheckedCreateNestedManyWithoutGroupInput = {
+    create?: XOR<VistasCreateWithoutGroupInput, VistasUncheckedCreateWithoutGroupInput> | VistasCreateWithoutGroupInput[] | VistasUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: VistasCreateOrConnectWithoutGroupInput | VistasCreateOrConnectWithoutGroupInput[]
+    createMany?: VistasCreateManyGroupInputEnvelope
+    connect?: VistasWhereUniqueInput | VistasWhereUniqueInput[]
+  }
+
+  export type VistasUpdateManyWithoutGroupNestedInput = {
+    create?: XOR<VistasCreateWithoutGroupInput, VistasUncheckedCreateWithoutGroupInput> | VistasCreateWithoutGroupInput[] | VistasUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: VistasCreateOrConnectWithoutGroupInput | VistasCreateOrConnectWithoutGroupInput[]
+    upsert?: VistasUpsertWithWhereUniqueWithoutGroupInput | VistasUpsertWithWhereUniqueWithoutGroupInput[]
+    createMany?: VistasCreateManyGroupInputEnvelope
+    set?: VistasWhereUniqueInput | VistasWhereUniqueInput[]
+    disconnect?: VistasWhereUniqueInput | VistasWhereUniqueInput[]
+    delete?: VistasWhereUniqueInput | VistasWhereUniqueInput[]
+    connect?: VistasWhereUniqueInput | VistasWhereUniqueInput[]
+    update?: VistasUpdateWithWhereUniqueWithoutGroupInput | VistasUpdateWithWhereUniqueWithoutGroupInput[]
+    updateMany?: VistasUpdateManyWithWhereWithoutGroupInput | VistasUpdateManyWithWhereWithoutGroupInput[]
+    deleteMany?: VistasScalarWhereInput | VistasScalarWhereInput[]
+  }
+
+  export type VistasUncheckedUpdateManyWithoutGroupNestedInput = {
+    create?: XOR<VistasCreateWithoutGroupInput, VistasUncheckedCreateWithoutGroupInput> | VistasCreateWithoutGroupInput[] | VistasUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: VistasCreateOrConnectWithoutGroupInput | VistasCreateOrConnectWithoutGroupInput[]
+    upsert?: VistasUpsertWithWhereUniqueWithoutGroupInput | VistasUpsertWithWhereUniqueWithoutGroupInput[]
+    createMany?: VistasCreateManyGroupInputEnvelope
+    set?: VistasWhereUniqueInput | VistasWhereUniqueInput[]
+    disconnect?: VistasWhereUniqueInput | VistasWhereUniqueInput[]
+    delete?: VistasWhereUniqueInput | VistasWhereUniqueInput[]
+    connect?: VistasWhereUniqueInput | VistasWhereUniqueInput[]
+    update?: VistasUpdateWithWhereUniqueWithoutGroupInput | VistasUpdateWithWhereUniqueWithoutGroupInput[]
+    updateMany?: VistasUpdateManyWithWhereWithoutGroupInput | VistasUpdateManyWithWhereWithoutGroupInput[]
+    deleteMany?: VistasScalarWhereInput | VistasScalarWhereInput[]
+  }
+
+  export type VistaGroupCreateNestedOneWithoutVistasInput = {
+    create?: XOR<VistaGroupCreateWithoutVistasInput, VistaGroupUncheckedCreateWithoutVistasInput>
+    connectOrCreate?: VistaGroupCreateOrConnectWithoutVistasInput
+    connect?: VistaGroupWhereUniqueInput
+  }
+
+  export type VistaGroupUpdateOneRequiredWithoutVistasNestedInput = {
+    create?: XOR<VistaGroupCreateWithoutVistasInput, VistaGroupUncheckedCreateWithoutVistasInput>
+    connectOrCreate?: VistaGroupCreateOrConnectWithoutVistasInput
+    upsert?: VistaGroupUpsertWithoutVistasInput
+    connect?: VistaGroupWhereUniqueInput
+    update?: XOR<XOR<VistaGroupUpdateToOneWithWhereWithoutVistasInput, VistaGroupUpdateWithoutVistasInput>, VistaGroupUncheckedUpdateWithoutVistasInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -3864,6 +6191,89 @@ export namespace Prisma {
     roleId?: IntFilter<"User"> | number
   }
 
+  export type VistasCreateWithoutGroupInput = {
+    vistaId: string
+    label: string
+    fields: string
+  }
+
+  export type VistasUncheckedCreateWithoutGroupInput = {
+    vistaId: string
+    label: string
+    fields: string
+  }
+
+  export type VistasCreateOrConnectWithoutGroupInput = {
+    where: VistasWhereUniqueInput
+    create: XOR<VistasCreateWithoutGroupInput, VistasUncheckedCreateWithoutGroupInput>
+  }
+
+  export type VistasCreateManyGroupInputEnvelope = {
+    data: VistasCreateManyGroupInput | VistasCreateManyGroupInput[]
+  }
+
+  export type VistasUpsertWithWhereUniqueWithoutGroupInput = {
+    where: VistasWhereUniqueInput
+    update: XOR<VistasUpdateWithoutGroupInput, VistasUncheckedUpdateWithoutGroupInput>
+    create: XOR<VistasCreateWithoutGroupInput, VistasUncheckedCreateWithoutGroupInput>
+  }
+
+  export type VistasUpdateWithWhereUniqueWithoutGroupInput = {
+    where: VistasWhereUniqueInput
+    data: XOR<VistasUpdateWithoutGroupInput, VistasUncheckedUpdateWithoutGroupInput>
+  }
+
+  export type VistasUpdateManyWithWhereWithoutGroupInput = {
+    where: VistasScalarWhereInput
+    data: XOR<VistasUpdateManyMutationInput, VistasUncheckedUpdateManyWithoutGroupInput>
+  }
+
+  export type VistasScalarWhereInput = {
+    AND?: VistasScalarWhereInput | VistasScalarWhereInput[]
+    OR?: VistasScalarWhereInput[]
+    NOT?: VistasScalarWhereInput | VistasScalarWhereInput[]
+    groupId?: StringFilter<"Vistas"> | string
+    vistaId?: StringFilter<"Vistas"> | string
+    label?: StringFilter<"Vistas"> | string
+    fields?: StringFilter<"Vistas"> | string
+  }
+
+  export type VistaGroupCreateWithoutVistasInput = {
+    groupId: string
+    favouriteVista?: string
+  }
+
+  export type VistaGroupUncheckedCreateWithoutVistasInput = {
+    groupId: string
+    favouriteVista?: string
+  }
+
+  export type VistaGroupCreateOrConnectWithoutVistasInput = {
+    where: VistaGroupWhereUniqueInput
+    create: XOR<VistaGroupCreateWithoutVistasInput, VistaGroupUncheckedCreateWithoutVistasInput>
+  }
+
+  export type VistaGroupUpsertWithoutVistasInput = {
+    update: XOR<VistaGroupUpdateWithoutVistasInput, VistaGroupUncheckedUpdateWithoutVistasInput>
+    create: XOR<VistaGroupCreateWithoutVistasInput, VistaGroupUncheckedCreateWithoutVistasInput>
+    where?: VistaGroupWhereInput
+  }
+
+  export type VistaGroupUpdateToOneWithWhereWithoutVistasInput = {
+    where?: VistaGroupWhereInput
+    data: XOR<VistaGroupUpdateWithoutVistasInput, VistaGroupUncheckedUpdateWithoutVistasInput>
+  }
+
+  export type VistaGroupUpdateWithoutVistasInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+    favouriteVista?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VistaGroupUncheckedUpdateWithoutVistasInput = {
+    groupId?: StringFieldUpdateOperationsInput | string
+    favouriteVista?: StringFieldUpdateOperationsInput | string
+  }
+
   export type UserCreateManyRoleInput = {
     name: string
     email: string
@@ -3904,6 +6314,30 @@ export namespace Prisma {
     createdBy?: IntFieldUpdateOperationsInput | number
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedBy?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type VistasCreateManyGroupInput = {
+    vistaId: string
+    label: string
+    fields: string
+  }
+
+  export type VistasUpdateWithoutGroupInput = {
+    vistaId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    fields?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VistasUncheckedUpdateWithoutGroupInput = {
+    vistaId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    fields?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VistasUncheckedUpdateManyWithoutGroupInput = {
+    vistaId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    fields?: StringFieldUpdateOperationsInput | string
   }
 
 

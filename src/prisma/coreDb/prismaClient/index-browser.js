@@ -138,6 +138,18 @@ exports.Prisma.RolePermissionsScalarFieldEnum = {
   customers: 'customers'
 };
 
+exports.Prisma.VistaGroupScalarFieldEnum = {
+  groupId: 'groupId',
+  favouriteVista: 'favouriteVista'
+};
+
+exports.Prisma.VistasScalarFieldEnum = {
+  groupId: 'groupId',
+  vistaId: 'vistaId',
+  label: 'label',
+  fields: 'fields'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -151,7 +163,9 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  RolePermissions: 'RolePermissions'
+  RolePermissions: 'RolePermissions',
+  VistaGroup: 'VistaGroup',
+  Vistas: 'Vistas'
 };
 
 /**

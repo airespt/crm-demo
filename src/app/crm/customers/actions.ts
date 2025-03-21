@@ -1,9 +1,20 @@
 'use server'
 
+import { useSession } from "@/app/login/actions"
+import { hasPermission, UserPermissions } from "@/app/login/userPermissions"
 import { Customer } from "@/prisma/sageDb/interfaces"
 import { customerService } from "@/Services/customer"
 
 export async function listCustomers() {
+  const user = await useSession('/crm/customers')
+  if( !hasPermission(user.role?.customers, UserPermissions.View) ) {
+    return {
+      data: [] as Customer[],
+      success: false,
+      error: 'no permission'
+    }
+  }
+
   try {
     const result = await customerService.list()
     return {

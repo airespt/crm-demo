@@ -30,8 +30,53 @@ model User {
 model RolePermissions {
   id              Int    @id @default(autoincrement())
   name            String @unique
+  //  isAdmin               Boolean     @default(false)
   userAccounts    Int    @default(0)
   rolePermissions Int    @default(0)
   customers       Int    @default(0)
   users           User[]
 }
+
+model VistaGroup {
+  groupId        String   @id
+  favouriteVista String   @default("")
+  vistas         Vistas[]
+}
+
+model Vistas {
+  groupId String
+  group   VistaGroup @relation(fields: [groupId], references: [groupId])
+  vistaId String
+  label   String     @db.NVarChar(50)
+  fields  String     @db.NVarChar(4000) // JSON array of Fields assigned to this vista
+
+  @@id(fields: [groupId, vistaId])
+}
+
+// model Vistas {
+//   groupId             String      @db.NVarChar(50)
+//   vistaName           String      @db.NVarChar(50)
+//   fields              FieldsOnVistas[]
+//   @@id(fields: [groupId, vistaName])
+// }
+
+// model SageFields {
+//   tableKey            String    @db.NVarChar(50)
+//   fieldKey            String    @db.NVarChar(100)
+//   vistas              FieldsOnVistas[]
+//   @@id([tableKey, fieldKey])
+// }
+
+// model FieldsOnVistas {
+//   groupId             String    @db.NVarChar(50)
+//   vistaName           String    @db.NVarChar(50)
+//   vista               Vistas    @relation(fields: [groupId, vistaName], references: [groupId, vistaName])
+//   tableKey            String    @db.NVarChar(50)
+//   fieldKey            String    @db.NVarChar(100)
+//   field               SageFields @relation(fields: [tableKey, fieldKey], references: [tableKey, fieldKey])
+//   @@id([groupId, vistaName, tableKey, fieldKey])
+
+//   label               String    @db.NVarChar(50) @default("")
+//   //width               Int       @default(100)
+//   //order               Int       @default(0)
+// }
