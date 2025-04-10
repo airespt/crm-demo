@@ -2,9 +2,9 @@ import { VistasView } from "@/contexts/Vistas/types"
 
 export const vistaConfig = {
   defaultVista: {
-    groupId: 'customer', // used to set the group in the useVistas hook
-    vistaId: 'default',
-    label: 'Default View',
+    groupId: 'customer', // sets the key for all vistas created from this config
+    vistaId: 'default', // leave as 'default' to prevent modifying it's fields in the view
+    label: 'Default View', 
     fields: ['CustomerID', 'OrganizationName', 'FederalTaxID', 'Telephone1'],
   } as VistasView,
   // availableFields: [

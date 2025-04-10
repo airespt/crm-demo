@@ -5267,6 +5267,59 @@ __metadata:
   languageName: node
   linkType: hard
 
+"crm-demo@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "crm-demo@workspace:."
+  dependencies:
+    "@babel/core": "npm:7.26.10"
+    "@eslint/js": "npm:9.22.0"
+    "@ianvs/prettier-plugin-sort-imports": "npm:4.4.1"
+    "@mantine/core": "npm:7.17.2"
+    "@mantine/form": "npm:7.17.2"
+    "@mantine/hooks": "npm:7.17.2"
+    "@mantine/notifications": "npm:7.17.2"
+    "@next/bundle-analyzer": "npm:15.2.3"
+    "@prisma/client": "npm:6.5.0"
+    "@storybook/nextjs": "npm:8.6.7"
+    "@storybook/react": "npm:8.6.7"
+    "@tabler/icons-react": "npm:3.31.0"
+    "@testing-library/dom": "npm:10.4.0"
+    "@testing-library/jest-dom": "npm:6.6.3"
+    "@testing-library/react": "npm:16.2.0"
+    "@testing-library/user-event": "npm:14.6.1"
+    "@types/eslint-plugin-jsx-a11y": "npm:6.10.0"
+    "@types/jest": "npm:29.5.14"
+    "@types/node": "npm:22.13.11"
+    "@types/react": "npm:19.0.12"
+    ag-grid-react: "npm:33.1.1"
+    babel-loader: "npm:10.0.0"
+    eslint: "npm:9.22.0"
+    eslint-config-mantine: "npm:4.0.3"
+    eslint-plugin-jsx-a11y: "npm:6.10.2"
+    eslint-plugin-react: "npm:7.37.4"
+    jest: "npm:29.7.0"
+    jest-environment-jsdom: "npm:29.7.0"
+    next: "npm:15.2.3"
+    postcss: "npm:8.5.3"
+    postcss-preset-mantine: "npm:1.17.0"
+    postcss-simple-vars: "npm:7.0.1"
+    prettier: "npm:3.5.3"
+    prisma: "npm:6.5.0"
+    prisma-generator-typescript-interfaces: "npm:2.1.0"
+    react: "npm:19.0.0"
+    react-dom: "npm:19.0.0"
+    storybook: "npm:8.6.7"
+    storybook-dark-mode: "npm:4.0.2"
+    stylelint: "npm:16.16.0"
+    stylelint-config-standard-scss: "npm:14.0.0"
+    ts-jest: "npm:29.2.6"
+    ts-node: "npm:10.9.2"
+    typescript: "npm:5.8.2"
+    typescript-eslint: "npm:8.27.0"
+    zod: "npm:3.24.2"
+  languageName: unknown
+  linkType: soft
+
 "cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.3, cross-spawn@npm:^7.0.6":
   version: 7.0.6
   resolution: "cross-spawn@npm:7.0.6"
@@ -8825,59 +8878,6 @@ __metadata:
   checksum: 10c0/b0e6e599780ce6bab49cc413eba822f7d1f0dfebd1c103eaa3785c59e43e22c59018323cf9e1708f0ef5329e94a745d163fcbb6bff8e4c6742f9be9e86f3500c
   languageName: node
   linkType: hard
-
-"mantine-next-template@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "mantine-next-template@workspace:."
-  dependencies:
-    "@babel/core": "npm:7.26.10"
-    "@eslint/js": "npm:9.22.0"
-    "@ianvs/prettier-plugin-sort-imports": "npm:4.4.1"
-    "@mantine/core": "npm:7.17.2"
-    "@mantine/form": "npm:7.17.2"
-    "@mantine/hooks": "npm:7.17.2"
-    "@mantine/notifications": "npm:7.17.2"
-    "@next/bundle-analyzer": "npm:15.2.3"
-    "@prisma/client": "npm:6.5.0"
-    "@storybook/nextjs": "npm:8.6.7"
-    "@storybook/react": "npm:8.6.7"
-    "@tabler/icons-react": "npm:3.31.0"
-    "@testing-library/dom": "npm:10.4.0"
-    "@testing-library/jest-dom": "npm:6.6.3"
-    "@testing-library/react": "npm:16.2.0"
-    "@testing-library/user-event": "npm:14.6.1"
-    "@types/eslint-plugin-jsx-a11y": "npm:6.10.0"
-    "@types/jest": "npm:29.5.14"
-    "@types/node": "npm:22.13.11"
-    "@types/react": "npm:19.0.12"
-    ag-grid-react: "npm:33.1.1"
-    babel-loader: "npm:10.0.0"
-    eslint: "npm:9.22.0"
-    eslint-config-mantine: "npm:4.0.3"
-    eslint-plugin-jsx-a11y: "npm:6.10.2"
-    eslint-plugin-react: "npm:7.37.4"
-    jest: "npm:29.7.0"
-    jest-environment-jsdom: "npm:29.7.0"
-    next: "npm:15.2.3"
-    postcss: "npm:8.5.3"
-    postcss-preset-mantine: "npm:1.17.0"
-    postcss-simple-vars: "npm:7.0.1"
-    prettier: "npm:3.5.3"
-    prisma: "npm:6.5.0"
-    prisma-generator-typescript-interfaces: "npm:2.1.0"
-    react: "npm:19.0.0"
-    react-dom: "npm:19.0.0"
-    storybook: "npm:8.6.7"
-    storybook-dark-mode: "npm:4.0.2"
-    stylelint: "npm:16.16.0"
-    stylelint-config-standard-scss: "npm:14.0.0"
-    ts-jest: "npm:29.2.6"
-    ts-node: "npm:10.9.2"
-    typescript: "npm:5.8.2"
-    typescript-eslint: "npm:8.27.0"
-    zod: "npm:3.24.2"
-  languageName: unknown
-  linkType: soft
 
 "map-or-similar@npm:^1.5.0":
   version: 1.5.0
